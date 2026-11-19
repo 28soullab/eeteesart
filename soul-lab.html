@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="fr" data-teinte="violet">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>28 Soul Lab — Eetee, Étienne Boschet</title>
+<meta name="description" content="Eetee (Étienne Boschet), artiste pluridisciplinaire : peinture, sculpture, poésie, film. Écologie de l'être.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&family=Noto+Sans+Egyptian+Hieroglyphs&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Dégradé vert : du presque blanc au vert profond */
+    --t-1:#f5f8f1;
+    --t-2:#e3ecdc;
+    --t-3:#b9cfb0;
+    --t-4:#6f9479;
+    --t-5:#2f5440;
+    --t-6:#13281c;
+    --encre:#1b2c21;
+    --clair:#eef4ea;
+    --ocre:#d99a1e;
+    --serif:"Cormorant Garamond", Georgia, serif;
+    --sans:"Jost", system-ui, sans-serif;
+  }
+  /* Dégradé bleu : du presque blanc au bleu pétrole des creux sculptés */
+  html[data-teinte="bleu"]{
+    --t-1:#f3f7f9;
+    --t-2:#dfe9ef;
+    --t-3:#afc6d3;
+    --t-4:#5f8499;
+    --t-5:#24475d;
+    --t-6:#0e2131;
+    --encre:#142534;
+    --clair:#e9f1f5;
+  }
+  /* Violet pastel qui fonce : 28 Soul Lab */
+  html[data-teinte="violet"]{
+    --t-1:#f7f3fb; --t-2:#e9e0f3; --t-3:#cbb9e3; --t-4:#9278b9; --t-5:#5a417f; --t-6:#271838;
+    --encre:#2a1d3b; --clair:#f2ecf9;
+  }
+  /* Jaune doré qui fonce : Œuvres */
+  html[data-teinte="or"]{
+    --t-1:#fcf9ee; --t-2:#f6eac6; --t-3:#e7cc7f; --t-4:#c19b3d; --t-5:#7c5c18; --t-6:#33240a;
+    --encre:#3a2a0c; --clair:#fbf3de;
+  }
+  /* Dégradé continu : bleu (about) → or (œuvres) → violet (28 Soul Lab) */
+  html[data-teinte="continu"]{
+    --t-1:#f3f7f9; --t-2:#dfe9ef; --t-3:#c9b6e2; --t-4:#8a7a5a; --t-5:#5a417f; --t-6:#221533;
+    --encre:#1f2a35; --clair:#f2ecf9;
+  }
+  html[data-teinte="continu"] body{background:linear-gradient(180deg,
+    #f3f7f9 0, #f3f7f9 100svh, #d9e7ef 24%, #b7cfdd 40%, #f3e5b6 46%, #e2c472 54%, #c9a24a 59%,
+    #b9cfa9 63%, #86a985 72%, #6f9479 77%, #7e69ab 82%, #5a417f 90%, #221533 100%)}
+  *{box-sizing:border-box;margin:0;padding:0}
+
+  /* Sélecteur de teinte (aperçu uniquement) */
+  .teintes{position:fixed;right:1rem;bottom:1rem;z-index:20;display:flex;gap:.4rem;padding:.35rem;
+    background:rgba(255,255,255,.85);backdrop-filter:blur(8px);border-radius:999px;box-shadow:0 2px 12px rgba(0,0,0,.18)}
+  .teintes button{border:0;border-radius:999px;padding:.55rem 1rem;font:500 .78rem var(--sans);letter-spacing:.12em;
+    text-transform:uppercase;cursor:pointer;background:transparent;color:#333}
+  .teintes button.actif{color:#fff}
+  .teintes button[data-t="vert"].actif{background:#2f5440}
+  .teintes button[data-t="bleu"].actif{background:#24475d}
+  .teintes button[data-t="violet"].actif{background:#5a417f}
+  .teintes button[data-t="or"].actif{background:#7c5c18}
+  .teintes button[data-t="continu"].actif{background:linear-gradient(90deg,#5f8499,#c19b3d,#5a417f)}
+  .teintes button{padding:.55rem .7rem}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--sans);font-weight:300;color:var(--encre);line-height:1.7;
+    background:linear-gradient(180deg,
+      var(--t-1) 0, var(--t-1) 100svh, var(--t-2) 28%, var(--t-3) 48%,
+      var(--t-4) 66%, var(--t-5) 84%, var(--t-6) 100%);
+    min-height:100vh;
+  }
+  img{max-width:100%;display:block}
+  a{color:inherit}
+
+  /* Menu : trois barres */
+  .burger{background:none;border:0;cursor:pointer;padding:.8rem;display:grid;gap:6px;color:inherit}
+  .burger span{display:block;width:30px;height:2px;background:currentColor;border-radius:2px}
+  /* Petit bouton menu qui reste en haut, centré, une fois l'ouverture passée */
+  .flottant{position:fixed;top:.6rem;left:50%;transform:translate(-50%,-150%);z-index:10;color:var(--encre);
+    background:color-mix(in srgb,var(--t-1) 88%,transparent);backdrop-filter:blur(8px);border-radius:999px;
+    transition:transform .35s}
+  .flottant.visible{transform:translate(-50%,0)}
+  /* Menu plein écran */
+  .menu{position:fixed;inset:0;z-index:30;background:var(--t-6);color:var(--clair);display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:1.6rem;opacity:0;pointer-events:none;transition:opacity .35s}
+  .menu.ouvert{opacity:1;pointer-events:auto}
+  .menu a{font-family:var(--serif);font-size:clamp(1.8rem,7vw,2.6rem);text-decoration:none;letter-spacing:.03em}
+  .menu a:hover{color:var(--ocre)}
+  .menu .groupe{text-align:center}
+  .menu .sous{display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;gap:.3rem .9rem;max-width:22rem;margin:.6rem auto 0}
+  .menu .sous a{font-family:var(--sans);font-size:.95rem;letter-spacing:.06em;opacity:.85}
+  .menu .sous .rub-lien{flex-basis:100%;font-size:.7rem!important;letter-spacing:.3em!important;text-transform:uppercase;color:var(--ocre);opacity:1!important;margin-top:.5rem}
+  .menu .sous .rub{flex-basis:100%;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ocre);margin-top:.5rem}
+  .fermer{position:absolute;top:1rem;left:50%;transform:translateX(-50%);background:none;border:0;color:inherit;
+    font-size:2.2rem;line-height:1;cursor:pointer;padding:.5rem}
+
+  /* Ouverture plein écran : logo, nom et menu centrés */
+  .ouverture{position:relative;height:100svh;min-height:560px;overflow:hidden;color:#fff}
+  .ouverture img,.ouverture video{width:100%;height:100%;object-fit:cover}
+  .ouverture::after{content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(ellipse 90% 34% at 50% 44%,rgba(10,20,14,.72),rgba(10,20,14,.35) 60%,transparent 85%),
+      linear-gradient(180deg,transparent 0%,transparent 74%,
+        color-mix(in srgb,var(--t-1) 55%,transparent) 86%,var(--t-1) 100%)}
+  .ouverture .centre{position:absolute;inset:0 0 34% 0;z-index:2;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;gap:1rem}
+  .ouverture .logo{width:min(58vw,360px);height:auto;object-fit:contain;filter:drop-shadow(0 4px 18px rgba(0,0,0,.45))}
+  .nom{font-family:var(--serif);font-weight:400;font-size:clamp(1.9rem,7.5vw,3rem);line-height:1.1;letter-spacing:.12em;
+    text-shadow:0 2px 12px rgba(0,0,0,.5)}
+
+  /* Sections */
+  section{padding:6rem 1.5rem;max-width:1100px;margin:0 auto}
+  h2{font-family:var(--serif);font-weight:400;font-size:clamp(2rem,6vw,3.2rem);line-height:1.1;margin-bottom:1.5rem}
+  .surtitre{font-size:.75rem;letter-spacing:.24em;text-transform:uppercase;color:var(--t-5);margin-bottom:.8rem}
+  .intro{text-align:center}
+  .portrait{width:min(86vw,420px);aspect-ratio:3/4;margin:3rem auto 0;overflow:hidden;
+    border-radius:50% 50% 4px 4px / 37.5% 37.5% 4px 4px;box-shadow:0 18px 50px rgba(0,0,0,.18)}
+  .portrait img{width:100%;height:100%;object-fit:cover;object-position:55% 30%}
+  .titre-role{font-family:var(--sans);font-weight:400;font-size:clamp(.8rem,2.8vw,1rem);letter-spacing:.42em;text-transform:uppercase;
+    margin-top:-.4rem;text-shadow:0 2px 10px rgba(0,0,0,.55);padding-left:.42em}
+  .intro p{font-family:var(--serif);font-size:clamp(1.25rem,3.4vw,1.65rem);line-height:1.55;max-width:40rem;margin:0 auto 1rem}
+  /* Langue : on n'affiche que les textes de la langue choisie */
+  html[lang="fr"] [lang="en"], html[lang="en"] [lang="fr"]{display:none}
+  .langues{position:fixed;top:.9rem;right:1rem;z-index:15;display:flex;gap:.2rem;font:500 .75rem var(--sans);letter-spacing:.14em}
+  .langues button{background:rgba(255,255,255,.18);backdrop-filter:blur(6px);border:0;color:#fff;padding:.4rem .6rem;border-radius:999px;cursor:pointer}
+  .langues button.actif{background:rgba(255,255,255,.85);color:#1b2c21}
+  .intro em{color:var(--t-5)}
+
+  #oeuvres{text-align:center;padding-bottom:3rem}
+  #oeuvres .surtitre{color:#a06a00;font-weight:500}
+  /* Page À propos */
+  .entete-page{text-align:center;padding:3.5rem 1.5rem 0;color:var(--encre)}
+  .logo-page{width:min(52vw,280px);margin:0 auto}
+  .nom-page{font-family:var(--serif);font-size:clamp(1.6rem,6vw,2.4rem);letter-spacing:.1em;margin-top:.4rem}
+  .entete-page .burger{margin:.6rem auto 0}
+  .apropos{text-align:center;max-width:40rem;padding-top:2.5rem}
+  .apropos .portrait{margin:1rem auto 3rem}
+  .apropos p{font-family:var(--serif);font-size:clamp(1.15rem,3.2vw,1.4rem);line-height:1.65;margin:0 auto 1.2rem}
+  .apropos p.exergue{font-size:clamp(1.6rem,5.5vw,2.2rem);font-style:italic;line-height:1.3;margin:1rem auto 1.6rem}
+  .apropos .sep{display:block;margin:2.2rem 0;color:var(--ocre);font-size:.9rem}
+  .apropos em{font-style:italic}
+  .lab-logo{display:block;width:min(70vw,340px);margin:1.5rem auto 0;transition:transform .4s ease}
+  .lab-logo:hover,.lab-logo:active{transform:scale(1.06) rotate(-1.5deg)}
+  .lab-logo img{filter:drop-shadow(0 6px 16px rgba(0,0,0,.18))}
+  .lab-lien{margin-top:1rem;font-size:.9rem}
+  html[data-teinte="violet"] body{background:linear-gradient(180deg,#f7f3fb 0,#ece3f5 30%,#d6c6ea 62%,#a38bcb 80%,#5a417f 91%,#271838 100%)}
+  .apropos p.titre-caps{font-family:var(--sans);font-size:.95rem;letter-spacing:.32em;text-transform:uppercase;color:#5a417f;margin:1rem auto 2rem}
+  .logo-lab{width:min(78vw,420px);margin:0 auto}
+  .apropos .exergue{text-transform:none}
+  .en-dev{font-family:var(--sans),"Noto Sans Egyptian Hieroglyphs"!important;font-size:.72rem!important;letter-spacing:.22em;text-transform:uppercase;margin-top:2rem!important;opacity:.75;font-family:var(--sans)!important}
+  .lab-lien{font-family:var(--serif);font-size:1.5rem;letter-spacing:.04em;text-transform:none;border-color:var(--encre);color:var(--encre)}
+  /* Objets & Films */
+  .pratiques{text-align:center;padding-top:3rem;padding-bottom:3rem}
+  .pratiques .surtitre{color:var(--encre);opacity:.7}
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:1rem;max-width:640px;margin:0 auto}
+  .duo .carte{max-width:none}
+  .cadre.vide{display:grid;place-items:center;font-family:var(--serif);font-size:1.2rem;
+    background:rgba(255,255,255,.35);border:1px dashed currentColor;box-shadow:none;aspect-ratio:4/5;border-radius:20px}
+  /* Deux images qui se fondent lentement l'une dans l'autre */
+  .cadre.fondu{position:relative}
+  .cadre.fondu img{position:absolute;inset:0}
+  .cadre.fondu img:last-child{animation:fondu 12s ease-in-out infinite}
+  .duo .carte:last-child .cadre.fondu img:last-child{animation-delay:-6s}
+  @keyframes fondu{0%,40%{opacity:0}50%,90%{opacity:1}100%{opacity:0}}
+  @media (prefers-reduced-motion:reduce){.cadre.fondu img:last-child{animation:none;opacity:0}}
+  .film{display:block;max-width:760px;margin:0 auto;text-decoration:none}
+  .film .ecran{aspect-ratio:16/9;border-radius:20px;background:rgba(0,0,0,.28);display:grid;place-items:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.15)}
+  .film .lecture{width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.85);color:#1b2c21;
+    display:grid;place-items:center;font-size:1.4rem;padding-left:4px}
+  .film h3{font-family:var(--serif);font-style:italic;font-weight:400;font-size:1.2rem;margin-top:.8rem}
+  /* Sélection d'œuvres : rangée qu'on fait glisser */
+  .defile{display:flex;gap:1.1rem;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 1.5rem 1rem;
+    margin:0 auto;max-width:1100px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .defile::-webkit-scrollbar{display:none}
+  .carte{flex:0 0 74%;max-width:300px;scroll-snap-align:center;text-decoration:none}
+  .carte .cadre{aspect-ratio:4/5;border-radius:20px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.15);background:var(--t-2)}
+  .carte img{width:100%;height:100%;object-fit:cover;display:block}
+  .carte{text-align:center}
+  .carte h3{font-family:var(--serif);font-style:italic;font-weight:400;font-size:1.15rem;line-height:1.3;margin-top:.8rem;padding:0 .3rem}
+  .carte small{font-size:.78rem;opacity:.75;display:block;padding:0 .3rem;letter-spacing:.06em}
+  .carte .prix{font-size:.85rem;margin-top:.2rem;letter-spacing:.06em}
+  .carte.fin .cadre{display:grid;place-items:center;text-align:center;background:transparent;border:1px solid var(--t-4);
+    box-shadow:none;font-family:var(--serif);font-size:1.4rem;line-height:1.3}
+  @media (min-width:760px){.carte{flex-basis:30%}}
+  .grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.5rem}
+  .oeuvre .cadre{aspect-ratio:4/5;background:rgba(255,255,255,.45);border:1px dashed var(--t-4);
+    display:grid;place-items:center;font-size:.8rem;color:var(--t-5);text-align:center;padding:1rem}
+  /* Formes de cadre */
+  .cadre.arrondi{border-radius:22px}
+  .cadre.arche{border-radius:50% 50% 4px 4px / 40% 40% 4px 4px}
+  .cadre.galet{border-radius:58% 42% 52% 48% / 46% 54% 46% 54%}
+  .cadre img{width:100%;height:100%;object-fit:cover;border-radius:inherit}
+  .oeuvre h3{font-family:var(--serif);font-weight:500;font-size:1.25rem;margin-top:.8rem}
+  .oeuvre small{font-size:.8rem;opacity:.8}
+
+  .bouton{display:inline-block;margin-top:2rem;padding:.85rem 1.6rem;border:1px solid currentColor;
+    text-decoration:none;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;transition:background .2s,color .2s}
+  .bouton:hover{background:var(--encre);color:var(--t-1)}
+
+  #oeuvres .bouton{background:color-mix(in srgb,var(--t-1) 75%,transparent);border-color:var(--encre)}
+  .clair{color:var(--clair)}
+  .clair .surtitre{color:var(--ocre)}
+  .clair .bouton:hover{background:var(--clair);color:var(--t-6)}
+  .lab{text-align:center}
+  .lab p{max-width:38rem;margin:0 auto 1rem;line-height:1.75}
+
+  footer{padding:4rem 1.5rem 3rem;color:var(--clair);opacity:.85;text-align:center;font-size:.85rem}
+  footer .liens{display:flex;flex-wrap:wrap;justify-content:center;gap:.8rem 1.4rem;margin:2.5rem auto 1.5rem;max-width:30rem;letter-spacing:.14em;text-transform:uppercase;font-size:.75rem}
+  footer .contact{margin-top:0}
+  footer .soutien{margin-top:0}
+  footer .soutien .lbl{flex-basis:100%;color:var(--ocre)}
+  footer .mail{margin-top:.8rem;letter-spacing:.06em}
+</style>
+</head>
+<body>
+
+<!-- Menu plein écran -->
+<nav class="menu" id="menu" aria-hidden="true">
+  <button class="fermer" aria-label="Fermer le menu">×</button>
+  <a href="about.html"><span lang="fr">À propos</span><span lang="en">About</span></a>
+  <div class="groupe">
+    <a href="oeuvres.html"><span lang="fr">Œuvres</span><span lang="en">Works</span></a>
+    <div class="sous">
+      <span class="rub"><span lang="fr">Peintures</span><span lang="en">Paintings</span></span>
+      <a href="#"><span lang="fr">Figuratif</span><span lang="en">Figurative</span></a><a href="#"><span lang="fr">Non-figuratif</span><span lang="en">Non-figurative</span></a>
+      <span class="rub"><span lang="fr">Objets</span><span lang="en">Objects</span></span>
+      <a href="#">Sculptures</a><a href="#"><span lang="fr">Bijoux</span><span lang="en">Jewelry</span></a>
+      <span class="rub">Films</span>
+    </div>
+  </div>
+  <div class="groupe">
+    <a href="soul-lab.html">28 Soul Lab</a>
+    <div class="sous">
+      <a class="rub-lien" href="soul-lab.html">Vision</a>
+      <a class="rub-lien" href="ateliers.html"><span lang="fr">Ateliers</span><span lang="en">Workshops</span></a>
+      <a href="ateliers.html">Solunarte</a><a href="ateliers.html">Synesthetic Tasting</a>
+      <a class="rub-lien" href="#"><span lang="fr">Le Sanctuaire Sylvestre</span><span lang="en">The Sylvan Sanctuary</span></a>
+    </div>
+  </div>
+</nav>
+
+<div class="langues"><button data-l="fr" class="actif">FR</button><button data-l="en">EN</button></div>
+
+<button class="burger flottant" id="flottant" aria-label="Menu"><span></span><span></span><span></span></button>
+
+<header class="entete-page">
+  <img class="logo-lab" src="images/logo-28soullab.png" alt="28 Soul Lab">
+  <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</header>
+
+<section class="apropos">
+  <p class="titre-caps" lang="fr">Un écosystème créatif</p>
+  <p lang="fr">Depuis six ans, je cultive une discipline hybride mêlant expression artistique, mouvement et contemplation. Une pratique personnelle qui a permis à cette vision de mûrir.</p>
+  <p lang="fr">Le Soul Lab est un jardin où se rassembler autour de l’art de vivre en connexion profonde. C’est un organisme culturel vivant d’expériences variées et une invitation à ralentir, à observer, à s’émerveiller, à se cultiver soi-même ainsi que sa relation au monde — <em>non pas en spectateurs, mais en co-tisserands de sens.</em></p>
+  <span class="sep" lang="fr" aria-hidden="true">✦</span>
+  <p lang="fr">Une <em>esthétique de la connexion</em> et une <em>écologie de l’être</em> au service de nos dons les plus précieux : la Terre dans sa diversité foisonnante et notre Humanité partagée.</p>
+  <p lang="fr">La contemplation aventureuse, la créativité authentique, l’exploration sensorielle et la communauté consciente comme catalyseurs de transition et de transformation vers des états de conscience plus élevés.</p>
+  <span class="sep" lang="fr" aria-hidden="true">✦</span>
+  <p lang="fr">Le nombre 28 incarne l’harmonie et le renouveau. C’est un nombre parfait, et celui des cycles lunaires. Il symbolise la rencontre de la matière et de l’esprit — le fil conducteur de toute l’œuvre.</p>
+  <span class="sep" lang="fr" aria-hidden="true">✦</span>
+  <p class="exergue" lang="fr">28 Soul Lab, c’est aussi la Transmission.</p>
+  <p lang="fr">Ces six années de discipline au service de ma vocation ont fait apparaître l’évidence du partage et de la transmission.</p>
+  <p lang="fr">Si nos modes de vie modernes ont asséché nos âmes et nos terres, demeure en chacun de nous cette faculté ancienne : <em>l’Œil du Cœur</em> — cet organe de perception imaginale capable de sentir l’âme des choses, la présence d’une forêt, le langage d’une racine ou la sagesse d’une rivière…</p>
+  <p lang="fr">Je développe des ateliers comme des espaces de transmission — non pas d’abord d’information, mais d’attention. Des lieux où l’on réapprend à percevoir avec tout le corps ; où le monde n’est plus seulement ce que l’on observe, mais ce que l’on laisse nous traverser.</p>
+  <p class="titre-caps" lang="en">A creative ecosystem</p>
+  <p lang="en">For six years, I have cultivated a hybrid discipline blending artistic expression, movement and contemplation. A personal practice which allowed this vision to mature.</p>
+  <p lang="en">The Soul Lab is a garden in which to gather around the art of living in deep connection. It is a living cultural organism of varied experiences and an invitation to slow down, to observe, to wonder, to cultivate oneself and one’s relationship with the world — <em>not as spectators, but as co-weavers of meaning.</em></p>
+  <span class="sep" lang="en" aria-hidden="true">✦</span>
+  <p lang="en">An <em>aesthetics of connection</em> and an <em>ecology of being</em> in service of our most precious gifts: the Earth in its teeming diversity and our shared Humanity.</p>
+  <p lang="en">Adventurous contemplation, authentic creativity, sensory exploration and conscious community as catalysts of transition and transformation towards higher states of consciousness.</p>
+  <span class="sep" lang="en" aria-hidden="true">✦</span>
+  <p lang="en">The number 28 embodies harmony and renewal. It is a perfect number and that of the lunar cycles. It symbolises the meeting of matter and spirit — the guiding thread of all the work.</p>
+  <span class="sep" lang="en" aria-hidden="true">✦</span>
+  <p class="exergue" lang="en">28 Soul Lab is also Transmission.</p>
+  <p lang="en">These six years of discipline in service of my vocation illuminated the evidence of sharing and transmitting.</p>
+  <p lang="en">Though modern lifestyles have left our souls and lands dry, within each of us remains this ancient faculty: <em>the Eye of the Heart</em> — that organ of imaginal perception capable of sensing the soul of things, the presence of a forest, the language of a root, or the wisdom of a river…</p>
+  <p lang="en">I am developing workshops as spaces of transmission — not primarily of information, but of attention. Places where we learn again to perceive with the whole body; where the world is no longer something we merely observe, but something we allow to pass through us.</p>
+  <p class="en-dev">𓁿 <span lang="fr">En développement</span><span lang="en">Under Development</span> 𓁿</p>
+</section>
+
+<footer id="contact">
+  <a class="bouton contact" href="mailto:eeteesart@gmail.com">Contact</a>
+  <p class="mail">eeteesart@gmail.com</p>
+  <div class="liens">
+    <a href="https://www.instagram.com/28soullab">Instagram</a>
+    <a href="https://substack.com/@28soullab">Substack</a>
+    <a href="https://www.linkedin.com/in/etienne-boschet-bb8525a3">LinkedIn</a>
+  </div>
+  <div class="liens soutien">
+    <span class="lbl"><span lang="fr">Soutenir</span><span lang="en">Support</span></span>
+    <a href="https://www.patreon.com/28SoulLab">Patreon</a>
+    <a href="https://buymeacoffee.com/28soullab">Buy Me a Coffee</a>
+  </div>
+  <p>© Étienne Boschet · Eetee</p>
+</footer>
+
+
+
+<script>
+  document.querySelectorAll('.teintes button').forEach(b=>b.addEventListener('click',()=>{
+    document.documentElement.dataset.teinte=b.dataset.t;
+    document.querySelectorAll('.teintes button').forEach(x=>x.classList.toggle('actif',x===b));
+  }));
+  const choisirLangue=l=>{document.documentElement.lang=l;
+    document.querySelectorAll('.langues button').forEach(x=>x.classList.toggle('actif',x.dataset.l===l));
+    try{localStorage.setItem('langue',l)}catch(e){}};
+  document.querySelectorAll('.langues button').forEach(b=>b.addEventListener('click',()=>choisirLangue(b.dataset.l)));
+  try{const l=localStorage.getItem('langue');if(l)choisirLangue(l)}catch(e){}
+  const menu=document.getElementById('menu');
+  document.querySelectorAll('.burger').forEach(b=>b.addEventListener('click',()=>menu.classList.add('ouvert')));
+  menu.addEventListener('click',e=>{ if(e.target.closest('a,.fermer')) menu.classList.remove('ouvert'); });
+  const f=document.getElementById('flottant');
+  const maj=()=>f.classList.toggle('visible',window.scrollY>window.innerHeight*0.75);
+  window.addEventListener('scroll',maj,{passive:true});maj();
+</script>
+</body>
+</html>
