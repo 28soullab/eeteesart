@@ -110,6 +110,11 @@
         color-mix(in srgb,var(--t-1) 55%,transparent) 86%,var(--t-1) 100%)}
   .ouverture .centre{position:absolute;inset:0 0 34% 0;z-index:2;display:flex;flex-direction:column;
     align-items:center;justify-content:center;text-align:center;gap:1rem}
+  .logo-fondu{display:grid}
+  .logo-fondu .logo{grid-area:1/1}
+  .logo-fondu .couleur{animation:vers-nb 3.5s ease-in-out 1.8s forwards}
+  @keyframes vers-nb{to{opacity:0}}
+  @media (prefers-reduced-motion:reduce){.logo-fondu .couleur{animation:none;opacity:0}}
   .ouverture .logo{width:min(58vw,360px);height:auto;object-fit:contain;filter:drop-shadow(0 4px 18px rgba(0,0,0,.45))}
   .nom{font-family:var(--serif);font-weight:400;font-size:clamp(1.9rem,7.5vw,3rem);line-height:1.1;letter-spacing:.12em;
     text-shadow:0 2px 12px rgba(0,0,0,.5)}
@@ -254,7 +259,7 @@
 <div class="ouverture">
   <img src="images/accueil.jpg" alt="Relief sculpté bleu et ocre recouvert de fleurs de printemps">
   <div class="centre">
-    <h1><img class="logo" src="images/logo-nb.png" alt="Eetee"></h1>
+    <h1 class="logo-fondu"><img class="logo" src="images/logo-nb.png" alt="Eetee"><img class="logo couleur" src="images/logo.png" alt="" aria-hidden="true"></h1>
     <p class="nom">Étienne Boschet</p>      <!-- remplacé par ton nom typographié -->
     <p class="titre-role"><span lang="fr">Sublimateur</span><span lang="en">Sublimator</span></p>
     <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
