@@ -150,6 +150,15 @@
   .lab-logo img{filter:drop-shadow(0 6px 16px rgba(0,0,0,.18))}
   .lab-lien{margin-top:1rem;font-size:.9rem}
   html[data-teinte="or"] body{background:linear-gradient(180deg,#fcf9ee 0,#f8eed2 25%,#efd89a 55%,#d8b558 80%,#7c5c18 94%,#33240a 100%)}
+  .trio{display:flex;justify-content:center;align-items:center;gap:0;max-width:560px;margin:0 auto}
+  .trio .eclat{width:40%;position:relative;z-index:1}
+  .trio .poisson{width:27%;margin-top:22%}
+  .trio .poisson:first-child{margin-right:-4%}
+  .trio .poisson:last-child{margin-left:-4%}
+  .masque{width:min(46vw,210px);margin:3rem auto 1.5rem;filter:drop-shadow(0 8px 14px rgba(0,0,0,.15))}
+  .apropos p.exergue.petite{font-size:clamp(1.3rem,4.5vw,1.7rem)}
+  .bandeau-tirages p{margin:.15rem 0}
+  .bandeau-tirages .titre-tirages{font-family:var(--serif);font-size:1.3rem;letter-spacing:.04em;margin-bottom:.4rem}
   .themes{list-style:none;margin:1rem auto 0;font-family:var(--serif);font-style:italic;font-size:1.35rem;line-height:1.9}
   .themes li::before,.themes li::after{content:" – ";color:var(--ocre)}
   .bandeau-tirages{max-width:900px;margin:0 auto;padding:1.1rem 1.5rem;text-align:center;border-top:1px solid var(--t-4);border-bottom:1px solid var(--t-4);font-size:.9rem;letter-spacing:.04em}
@@ -262,17 +271,20 @@
 <button class="burger flottant" id="flottant" aria-label="Menu"><span></span><span></span><span></span></button>
 
 <header class="entete-page">
-  <a href="index.html"><img class="logo-page" src="images/logo.png" alt="Eetee"></a>
-  <p class="nom-page">Étienne Boschet</p>
+  <a href="index.html" class="trio" aria-label="Accueil">
+    <img class="poisson" src="images/oeuvres/poisson-gauche.png" alt="">
+    <img class="eclat" src="images/oeuvres/eclat-lumineux.png" alt="">
+    <img class="poisson" src="images/oeuvres/poisson-droite.png" alt="">
+  </a>
   <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
 </header>
 
 <section class="apropos">
   <p class="titre-caps" lang="fr">Œuvres</p><p class="titre-caps" lang="en">Works</p>
   <p class="exergue" lang="fr">Créer…</p><p class="exergue" lang="en">To create…</p>
-  <p lang="fr">N’est-ce pas se vider de soi pour que le geste juste puisse descendre ?</p>
+  <p lang="fr">N’est-ce pas se rendre suffisamment vide pour que le geste juste puisse descendre ?</p>
   <p lang="en">Is it not to empty oneself so that the right gesture may descend?</p>
-  <p lang="fr">N’est-ce pas se mêler à la matière, au silence, au son, à l’espace… pour que, par la subtilité et le savoir-faire affiné, le temps lui-même prenne une autre texture ?</p>
+  <p lang="fr">N’est-ce pas se mêler à la matière, au silence, au son, à l’espace… pour que, par la subtilité et le savoir-faire affiné, le temps lui-même se pare d’une texture différente ?</p>
   <p lang="en">Is it not to mingle with matter, silence, sound, space… so that through subtlety and refined skill, time itself takes on a different texture?</p>
   <p lang="fr">C’est oser et équilibrer, avec une aisance nonchalante et une force tranquille, apaiser et exprimer, cultiver et relâcher, remarquer et ennoblir.</p>
   <p lang="en">It is to dare and to balance, with nonchalant ease and tranquil force, to soothe and to express, to cultivate and to release, to notice and to ennoble.</p>
@@ -281,11 +293,22 @@
   <p lang="en">The initial phase of my research explored the following themes:</p>
   <ul class="themes" lang="fr"><li>Communion</li><li>Révérence</li><li>Métamorphose</li><li>Contemplation</li><li>Mystère</li><li>Transcendance</li></ul>
   <ul class="themes" lang="en"><li>Communion</li><li>Reverence</li><li>Metamorphosis</li><li>Contemplation</li><li>Mystery</li><li>Transcendence</li></ul>
+
+  <img class="masque" src="images/oeuvres/masque-ermitage.png" alt="Masque sculpté en bois, couronne d’éclats" loading="lazy">
+  <p lang="fr">L’ermitage a permis l’exploration des symboles, des archétypes, de la profondeur de la conscience et des paysages intérieurs. Cette spéléologie de la psyché fut soutenue par des pratiques incarnées et contemplatives.</p>
+  <p lang="en">Hermitage allowed the exploration of symbols, archetypes, the depth of consciousness and inner landscapes. This speleology of the psyche was sustained by embodied and contemplative practices.</p>
+  <p class="exergue petite" lang="fr">Au fond de la grotte,<br>la lumière à remonter.</p>
+  <p class="exergue petite" lang="en">At the bottom of the cave,<br>the light to be carried back up.</p>
+
+  <img class="masque" src="images/oeuvres/masque-pelerinage.png" alt="Masque sculpté en bois de racine, cornes torsadées" loading="lazy">
+  <p lang="fr">Le pèlerinage a fait naître une manière de créer plus ancrée, plus proche de la terre et tournée vers la transmission. Elle commencera par un film.</p>
+  <p lang="en">Pilgrimage gave rise to a more grounded way of creating, closer to the land and oriented towards transmission. It will begin with a film.</p>
 </section>
 
 <div class="bandeau-tirages">
-  <p lang="fr"><strong>Tirages dès 50 €</strong> — Standard · Papier Fine Art · Premium (Dibond, plexiglas)</p>
-  <p lang="en"><strong>Prints from €50</strong> — Standard · Fine Art paper · Premium (Dibond, plexiglass)</p>
+  <p class="titre-tirages"><span lang="fr">– Tirages dès 50 € –</span><span lang="en">– Prints from €50 –</span></p>
+  <p><span lang="fr">Papiers délicats</span><span lang="en">Fine papers</span></p>
+  <p>Premium (Alu Dibond &amp; Plexiglass)</p>
 </div>
 
 <section class="galerie">
