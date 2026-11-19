@@ -79,7 +79,7 @@
 
   /* Menu : trois barres */
   .burger{background:none;border:0;cursor:pointer;padding:.8rem;display:grid;gap:6px;color:inherit}
-  .burger span{display:block;width:30px;height:2px;background:currentColor;border-radius:2px}
+  .burger .vagues{display:block}
   /* Petit bouton menu qui reste en haut, centré, une fois l'ouverture passée */
   .flottant{position:fixed;top:.6rem;left:50%;transform:translate(-50%,-150%);z-index:10;color:var(--encre);
     background:color-mix(in srgb,var(--t-1) 88%,transparent);backdrop-filter:blur(8px);border-radius:999px;
@@ -256,7 +256,7 @@
 
 <div class="langues"><button data-l="fr" class="actif">FR</button><button data-l="en">EN</button></div>
 
-<button class="burger flottant" id="flottant" aria-label="Menu"><span></span><span></span><span></span></button>
+<button class="burger flottant" id="flottant" aria-label="Menu"><svg class="vagues" viewBox="0 0 32 22" width="32" height="22" aria-hidden="true"><path d="M2 4 q3.5 -3 7 0 t7 0 t7 0 t7 0 M2 11 q3.5 -3 7 0 t7 0 t7 0 t7 0 M2 18 q3.5 -3 7 0 t7 0 t7 0 t7 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
 
 <div class="ouverture">
   <img src="images/accueil.jpg" alt="Relief sculpté bleu et ocre recouvert de fleurs de printemps">
@@ -264,17 +264,17 @@
     <h1 class="logo-fondu"><img class="logo" src="images/logo-nb.png" alt="Eetee"><img class="logo couleur" src="images/logo.png" alt="" aria-hidden="true"></h1>
     <p class="nom">Étienne Boschet</p>      <!-- remplacé par ton nom typographié -->
     <p class="titre-role"><span lang="fr">Sublimateur</span><span lang="en">Sublimator</span></p>
-    <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <button class="burger" aria-label="Menu"><svg class="vagues" viewBox="0 0 32 22" width="32" height="22" aria-hidden="true"><path d="M2 4 q3.5 -3 7 0 t7 0 t7 0 t7 0 M2 11 q3.5 -3 7 0 t7 0 t7 0 t7 0 M2 18 q3.5 -3 7 0 t7 0 t7 0 t7 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
   </div>
 </div>
 
 <section class="intro" id="bio">
   <h2 class="devise" lang="fr">La Nature est d’essence Sublime<br><span class="ligne">et l’essence de la Nature Humaine</span><br>est la Sublimation</h2>
   <h2 class="devise" lang="en">Nature is Sublime in essence,<br><span class="ligne">and the essence of Human Nature</span><br>is Sublimation</h2>
-  <p lang="fr">Artiste pluridisciplinaire, <em>Troubadour des Temps Modernes</em> et <em>Mutin du Merveilleux</em>, Étienne Boschet explore une <em>esthétique de la connexion</em> et une <em>poétique immersive</em> comme voies de réenchantement et de reverdissement de nos paysages intérieurs et extérieurs.</p>
+  <p lang="fr">Artiste pluridisciplinaire, <em>Troubadour des Temps Modernes</em> et <em>Mutin du Merveilleux</em>, Étienne Boschet explore une <em>Esthétique de la Connexion</em> et une <em>Poétique Immersive</em> comme voies de réenchantement et de reverdissement de nos paysages intérieurs et extérieurs.</p>
   <p lang="fr">Sa recherche porte sur</p>
   <p class="triade" lang="fr"><em class="c-vert">l'écologie de l'être</em><em class="c-rouge">la présence</em><em class="c-jaune">la joie</em></p>
-  <p lang="en">Multidisciplinary artist, <em>Troubadour of Modern Times</em> and <em>Mutineer of the Marvellous</em>, Étienne Boschet explores <em>connective aesthetics</em> and <em>immersive poetics</em> as paths toward re-enchanting and rewilding our inner and outer landscapes.</p>
+  <p lang="en">Multidisciplinary artist, <em>Troubadour of Modern Times</em> and <em>Mutineer of the Marvellous</em>, Étienne Boschet explores <em>Connective Aesthetics</em> and <em>Immersive Poetics</em> as paths toward re-enchanting and rewilding our inner and outer landscapes.</p>
   <p lang="en">His research focuses on</p>
   <p class="triade" lang="en"><em class="c-vert">the ecology of being</em><em class="c-rouge">presence</em><em class="c-jaune">joy</em></p>
   <figure class="portrait"><img src="images/portrait.jpg" alt="Étienne Boschet levant les yeux vers les tableaux d'un musée, entouré de fleurs peintes" loading="lazy"></figure>

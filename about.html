@@ -79,7 +79,7 @@
 
   /* Menu : trois barres */
   .burger{background:none;border:0;cursor:pointer;padding:.8rem;display:grid;gap:6px;color:inherit}
-  .burger span{display:block;width:30px;height:2px;background:currentColor;border-radius:2px}
+  .burger .vagues{display:block}
   /* Petit bouton menu qui reste en haut, centré, une fois l'ouverture passée */
   .flottant{position:fixed;top:.6rem;left:50%;transform:translate(-50%,-150%);z-index:10;color:var(--encre);
     background:color-mix(in srgb,var(--t-1) 88%,transparent);backdrop-filter:blur(8px);border-radius:999px;
@@ -245,12 +245,12 @@
 
 <div class="langues"><button data-l="fr" class="actif">FR</button><button data-l="en">EN</button></div>
 
-<button class="burger flottant" id="flottant" aria-label="Menu"><span></span><span></span><span></span></button>
+<button class="burger flottant" id="flottant" aria-label="Menu"><svg class="vagues" viewBox="0 0 32 22" width="32" height="22" aria-hidden="true"><path d="M2 4 q3.5 -3 7 0 t7 0 t7 0 t7 0 M2 11 q3.5 -3 7 0 t7 0 t7 0 t7 0 M2 18 q3.5 -3 7 0 t7 0 t7 0 t7 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
 
 <header class="entete-page">
   <a href="index.html"><img class="logo-page" src="images/logo.png" alt="Eetee"></a>
   <p class="nom-page">Étienne Boschet</p>
-  <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  <button class="burger" aria-label="Menu"><svg class="vagues" viewBox="0 0 32 22" width="32" height="22" aria-hidden="true"><path d="M2 4 q3.5 -3 7 0 t7 0 t7 0 t7 0 M2 11 q3.5 -3 7 0 t7 0 t7 0 t7 0 M2 18 q3.5 -3 7 0 t7 0 t7 0 t7 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
 </header>
 
 <section class="apropos">
