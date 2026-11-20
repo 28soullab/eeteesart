@@ -574,7 +574,7 @@
     document.getElementById('fiche-titre').textContent=o.titre;
     document.getElementById('fiche-infos').textContent=[o.annee,en?o.technique_en:o.technique_fr,o.format].filter(x=>x&&x!=='?').join(' · ');
     const ed=en?o.edition_en:o.edition_fr; const e=document.getElementById('fiche-edition'); e.textContent=ed||''; e.style.display=ed?'':'none';
-    document.getElementById('fiche-prix').textContent=o.vendu?(en?'Sold':'Vendue'):(o.tirage_seul?(en?'Prints on request — Fine Art paper or Premium · price by size and finish':'Tirages sur demande — Papiers Délicats ou Premium · prix selon format et finition'):o.prix);
+    document.getElementById('fiche-prix').textContent=o.vendu?(en?'Sold':'Vendue'):(o.tirage_seul?(en?'Prints on request — Fine Art Paper or Premium · Price by Size and Finish':'Tirages sur demande — Papiers Délicats ou Premium · Prix selon Format et Finition'):o.prix);
     const a=document.getElementById('fiche-achat');
     if(o.vendu){a.style.display='none'}else{a.style.display='';a.textContent=o.tirage_seul?(en?'Request a print':'Demander un tirage'):(en?'Acquire this work':'Acquérir cette œuvre');
       a.href='mailto:eeteesart@gmail.com?subject='+encodeURIComponent((en?'Acquisition — ':'Acquisition — ')+o.titre);}
