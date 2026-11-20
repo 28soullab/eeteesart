@@ -403,7 +403,7 @@
   // ---- Son d'ouverture : joué une seule fois par visite ----
   (function(){
     const a=document.getElementById('son-ouverture'), btn=document.getElementById('bouton-son');
-    if(!a)return; a.volume=.28;
+    if(!a)return; a.volume=1;
     let deja=false; try{deja=sessionStorage.getItem('son-joue')==='1'}catch(e){}
     if(deja)return;
     const marquer=()=>{try{sessionStorage.setItem('son-joue','1')}catch(e){}};
