@@ -136,8 +136,8 @@
   #oeuvres .surtitre{color:#a06a00;font-weight:500}
   /* Page À propos */
   .entete-page{text-align:center;padding:3.5rem 1.5rem 0;color:var(--encre)}
-  .logo-page{width:min(52vw,280px);margin:0 auto}
-  .nom-page{font-family:var(--serif);font-size:clamp(1.6rem,6vw,2.4rem);letter-spacing:.1em;margin-top:.4rem}
+  .logo-page{width:min(24vw,120px);margin:0 auto}
+  .nom-page{font-family:var(--serif);font-size:clamp(1.6rem,6vw,2.4rem);letter-spacing:.1em;margin-top:1rem}
   .entete-page .burger{margin:.6rem auto 0}
   .apropos{text-align:center;max-width:40rem;padding-top:2.5rem}
   .apropos .portrait{margin:1rem auto 3rem}
@@ -501,7 +501,7 @@
     mos.innerHTML='';
     visibles.forEach((o,i)=>{
       const b=document.createElement('button');
-      b.innerHTML=`<img src="images/peintures/${o.fichier}" alt="${o.titre}" loading="lazy">`+(o.vendu?`<span class="pastille">${lang()==='en'?'Sold':'Vendu'}</span>`:'');
+      b.innerHTML=`<img src="images/peintures/${o.fichier}" alt="${o.titre}" loading="lazy">`+(o.vendu?`<span class="pastille">${lang()==='en'?'Sold':'Vendue'}</span>`:'');
       b.onclick=()=>ouvrir(i); mos.appendChild(b);
     });
   }
@@ -512,7 +512,7 @@
     document.getElementById('fiche-titre').textContent=o.titre;
     document.getElementById('fiche-infos').textContent=[o.annee,en?o.technique_en:o.technique_fr,o.format].filter(x=>x&&x!=='?').join(' · ');
     const ed=en?o.edition_en:o.edition_fr; const e=document.getElementById('fiche-edition'); e.textContent=ed||''; e.style.display=ed?'':'none';
-    document.getElementById('fiche-prix').textContent=o.vendu?(en?'Sold':'Vendu'):o.prix;
+    document.getElementById('fiche-prix').textContent=o.vendu?(en?'Sold':'Vendue'):o.prix;
     const a=document.getElementById('fiche-achat');
     if(o.vendu){a.style.display='none'}else{a.style.display='';a.textContent=en?'Acquire this work':'Acquérir cette œuvre';
       a.href='mailto:eeteesart@gmail.com?subject='+encodeURIComponent((en?'Acquisition — ':'Acquisition — ')+o.titre);}
