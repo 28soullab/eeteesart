@@ -344,6 +344,7 @@
   LISTE DES PEINTURES — pour ajouter / modifier une œuvre, éditer ce bloc.
   "vendu": true  → affiche « Vendu » et masque le bouton d'achat.
   "categorie": "figurative" ou "non-figurative".
+  Ajouter les nouvelles œuvres À LA FIN de la liste : elles s’afficheront en premier.
 -->
 <script type="application/json" id="donnees-peintures">
 [
@@ -490,7 +491,8 @@
   window.addEventListener('scroll',maj,{passive:true});maj();
 
   // ---- Galerie Peintures ----
-  const P=JSON.parse(document.getElementById('donnees-peintures').textContent);
+  // Ordre d'affichage : la dernière œuvre de la liste apparaît en premier (les plus anciennes en bas)
+  const P=JSON.parse(document.getElementById('donnees-peintures').textContent).reverse();
   const mos=document.getElementById('mosaique'), fiche=document.getElementById('fiche');
   const lang=()=>document.documentElement.lang==='en'?'en':'fr';
   let filtre='tout', visibles=[], courant=0;
