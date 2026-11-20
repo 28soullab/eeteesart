@@ -186,7 +186,7 @@
   .fiche h3{font-family:var(--serif);font-style:italic;font-weight:400;font-size:1.6rem;margin-top:1.1rem}
   .fiche p{font-size:.88rem;letter-spacing:.04em;opacity:.85;margin-top:.35rem;line-height:1.5}
   .fiche .edition{font-style:italic;max-width:32rem;margin-left:auto;margin-right:auto}
-  .fiche .prix{font-size:1rem;letter-spacing:.12em;opacity:1;margin-top:.8rem}
+  .fiche .prix{font-size:1rem;letter-spacing:.08em;opacity:1;margin-top:.8rem;max-width:30rem;margin-left:auto;margin-right:auto}
   .fiche .bouton{margin-top:1rem;color:#f2cf6b;border-color:#f2cf6b}
   .fiche-fermer{position:fixed;top:.8rem;right:1rem;background:none;border:0;color:#fff;font-size:2.2rem;cursor:pointer;z-index:2}
   .fiche-nav{position:fixed;top:45%;background:none;border:0;color:#fff;font-size:2.6rem;opacity:.7;cursor:pointer;padding:1rem;z-index:2}
@@ -487,6 +487,19 @@
   "vendu": false,
   "edition_fr": "Exemplaire unique sur Alu Dibond sous verre acrylique.",
   "edition_en": "Unique copy on Alu Dibond under acrylic glass."
+ },
+ {
+  "fichier": "12-wondering-wanderer.jpg",
+  "titre": "Wondering Wanderer",
+  "annee": "2023",
+  "technique_fr": "Hybride (huile, acrylique et retouche numérique)",
+  "technique_en": "Hybrid (oil, acrylic and digital retouching)",
+  "format": "",
+  "prix": "",
+  "categorie": "figurative",
+  "hybride": true,
+  "tirage_seul": true,
+  "vendu": false
  }
 ]
 </script>
@@ -548,9 +561,9 @@
     document.getElementById('fiche-titre').textContent=o.titre;
     document.getElementById('fiche-infos').textContent=[o.annee,en?o.technique_en:o.technique_fr,o.format].filter(x=>x&&x!=='?').join(' · ');
     const ed=en?o.edition_en:o.edition_fr; const e=document.getElementById('fiche-edition'); e.textContent=ed||''; e.style.display=ed?'':'none';
-    document.getElementById('fiche-prix').textContent=o.vendu?(en?'Sold':'Vendue'):o.prix;
+    document.getElementById('fiche-prix').textContent=o.vendu?(en?'Sold':'Vendue'):(o.tirage_seul?(en?'Prints on request — Fine Art paper or Premium · price by size and finish':'Tirages sur demande — Papiers Délicats ou Premium · prix selon format et finition'):o.prix);
     const a=document.getElementById('fiche-achat');
-    if(o.vendu){a.style.display='none'}else{a.style.display='';a.textContent=en?'Acquire this work':'Acquérir cette œuvre';
+    if(o.vendu){a.style.display='none'}else{a.style.display='';a.textContent=o.tirage_seul?(en?'Request a print':'Demander un tirage'):(en?'Acquire this work':'Acquérir cette œuvre');
       a.href='mailto:eeteesart@gmail.com?subject='+encodeURIComponent((en?'Acquisition — ':'Acquisition — ')+o.titre);}
     fiche.classList.add('ouverte'); document.body.style.overflow='hidden';
   }
