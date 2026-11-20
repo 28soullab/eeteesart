@@ -1077,7 +1077,7 @@
     mos.innerHTML='';
     visibles.forEach((o,i)=>{
       const b=document.createElement('button');
-      b.innerHTML=`<img src="images/peintures/${o.fichier}" alt="${o.titre}" loading="lazy">`+(o.vendu?`<span class="pastille">${lang()==='en'?'Sold':'Vendue'}</span>`:'');
+      b.innerHTML=`<img src="images/peintures/vignettes/${o.fichier}" alt="${o.titre}" loading="lazy">`+(o.vendu?`<span class="pastille">${lang()==='en'?'Sold':'Vendue'}</span>`:'');
       b.onclick=()=>ouvrir(i); mos.appendChild(b);
     });
   }
