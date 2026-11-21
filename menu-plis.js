@@ -19,7 +19,7 @@
         if(!suite.length){cur=null;return;}
         var b=document.createElement('button');b.type='button';b.className='rub';b.innerHTML=el.innerHTML;b.setAttribute('aria-expanded','false');
         var plis=document.createElement('div');plis.className='plis';
-        if(el.tagName==='A'&&el.getAttribute('href')&&el.getAttribute('href')!=='#'){
+        if(!sous.hasAttribute('data-sans-tout')&&el.tagName==='A'&&el.getAttribute('href')&&el.getAttribute('href')!=='#'){
           var tout=document.createElement('a');tout.className='ligne';tout.href=el.getAttribute('href');
           tout.innerHTML='<span lang="fr">Tout voir</span><span lang="en">View all</span>';plis.appendChild(tout);
         }
