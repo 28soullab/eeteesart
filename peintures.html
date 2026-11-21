@@ -1365,7 +1365,7 @@
  },
  {
   "fichier": "81-vases-en-valse.jpg",
-  "titre": "Vases en Valse, Sauvage Germination",
+  "titre": "Vases en Valse,\nSauvage Germination",
   "annee": "2025",
   "technique_fr": "Huile et Acrylique sur Toile",
   "technique_en": "Oil and Acrylic on Canvas",
@@ -1376,6 +1376,17 @@
   "tirage_seul": false,
   "vendu": false,
   "sous_titre": "à la racine, dans sa secrète splendeur, gît la Lumière"
+ },
+ {
+  "fichier": "82-amphore.jpg",
+  "titre": "Elle est l’Amphore aux Fins Ornements en Laquelle je Verse ma Poésie",
+  "annee": "2025",
+  "technique_fr": "Hybride (Huile et Acrylique sur Papier, Retouche Numérique)",
+  "technique_en": "Hybrid (Oil and Acrylic on Paper, Digital Retouching)",
+  "categorie": "figurative",
+  "hybride": true,
+  "tirage_seul": true,
+  "vendu": false
  }
 ]
 </script>
@@ -1426,21 +1437,21 @@
     mos.innerHTML='';
     visibles.forEach((o,i)=>{
       const b=document.createElement('button');
-      b.innerHTML=`<img src="images/peintures/vignettes/${o.fichier}" alt="${o.titre}" loading="lazy">`+(o.vendu?`<span class="pastille">${lang()==='en'?'Sold':'Vendue'}</span>`:'');
+      b.innerHTML=`<img src="images/peintures/vignettes/${o.fichier}" alt="${o.titre.replace(/\n/g," ")}" loading="lazy">`+(o.vendu?`<span class="pastille">${lang()==='en'?'Sold':'Vendue'}</span>`:'');
       b.onclick=()=>ouvrir(i); mos.appendChild(b);
     });
   }
   function ouvrir(i){
     courant=(i+visibles.length)%visibles.length; const o=visibles[courant], en=lang()==='en';
     document.getElementById('fiche-img').src='images/peintures/'+o.fichier;
-    document.getElementById('fiche-img').alt=o.titre;
-    document.getElementById('fiche-titre').innerHTML=o.titre+(o.sous_titre?`<small class="sous-titre">${o.sous_titre}</small>`:'');
+    document.getElementById('fiche-img').alt=o.titre.replace(/\n/g,' ');
+    document.getElementById('fiche-titre').innerHTML=o.titre.replace(/\n/g,'<br>')+(o.sous_titre?`<small class="sous-titre">${o.sous_titre}</small>`:'');
     document.getElementById('fiche-infos').textContent=[o.annee,en?o.technique_en:o.technique_fr,o.format].filter(x=>x&&x!=='?').join(' · ');
     const ed=en?o.edition_en:o.edition_fr; const e=document.getElementById('fiche-edition'); e.textContent=ed||''; e.style.display=ed?'':'none';
     document.getElementById('fiche-prix').textContent=o.vendu?(en?'Sold':'Vendue'):(o.tirage_seul?(en?'Prints on request — Fine Art Paper or Premium · Price by Size and Finish':'Tirages sur demande — Papiers Délicats ou Premium · Prix selon Format et Finition'):o.prix);
     const a=document.getElementById('fiche-achat');
     if(o.vendu){a.style.display='none'}else{a.style.display='';a.textContent=o.tirage_seul?(en?'Request a print':'Demander un tirage'):(en?'Acquire this work':'Acquérir cette œuvre');
-      a.href='mailto:eeteesart@gmail.com?subject='+encodeURIComponent((en?'Acquisition — ':'Acquisition — ')+o.titre);}
+      a.href='mailto:eeteesart@gmail.com?subject='+encodeURIComponent((en?'Acquisition — ':'Acquisition — ')+o.titre.replace(/\n/g,' '));}
     fiche.classList.add('ouverte'); document.body.style.overflow='hidden';
   }
   function fermer(){fiche.classList.remove('ouverte');document.body.style.overflow=''}
