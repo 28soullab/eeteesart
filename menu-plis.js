@@ -5,6 +5,7 @@
     '.menu .sous .plis{display:none;flex-basis:100%;flex-wrap:wrap;justify-content:center;align-items:baseline;gap:.3rem .9rem;margin:.2rem 0 .3rem}'+
     '.menu .sous .plis.ouvert{display:flex;animation:plis .35s ease}'+
     '@keyframes plis{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}'+
+    '.menu .sous .rub-lien,.menu .sous button.rub{font-weight:400!important}'+
     '.menu .sous button.rub{background:none;border:0;padding:0;font-family:inherit;cursor:pointer;display:block;width:100%;text-align:center;padding:.3rem 0!important;margin-top:.2rem!important}'+
     '.menu .sous button.rub::after{content:" ▾";font-size:.8em;display:inline-block;transition:transform .3s}'+
     '.menu .sous button.rub[aria-expanded="true"]::after{transform:rotate(180deg)}';
