@@ -169,7 +169,11 @@
   .galerie-tete .titre-caps{font-family:var(--sans);font-size:.95rem;letter-spacing:.32em;text-transform:uppercase;color:#b0566e;margin-bottom:1.2rem}
   .texte-hybrides{max-width:34rem;margin:.4rem auto 2rem;padding:0 1.4rem;text-align:center;font-size:.92rem;line-height:1.7}
   .texte-hybrides p{margin:0 0 1rem}
-  .texte-hybrides .titre-hyb{font-family:var(--serif);font-style:italic;font-size:1.25rem;margin-bottom:1.2rem}
+  .texte-hybrides .titre-hyb{font-family:var(--serif);font-style:italic;font-size:1.2rem;color:inherit;background:none;border:0;cursor:pointer;margin:0 auto .6rem;padding:.3rem .6rem;display:block}
+  .texte-hybrides .titre-hyb::after{content:" ▾";font-style:normal;font-size:.8em;display:inline-block;transition:transform .3s}
+  .texte-hybrides .titre-hyb[aria-expanded="true"]::after{transform:rotate(180deg)}
+  #corps-hyb{animation:plis .35s ease;margin-top:1rem}
+  @keyframes plis{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
   .filtres{display:flex;justify-content:center;gap:.4rem;flex-wrap:wrap}
   .filtres button{background:none;border:1px solid transparent;border-radius:999px;padding:.45rem .9rem;font:500 .72rem var(--sans);
     letter-spacing:.16em;text-transform:uppercase;color:var(--encre);opacity:.6;cursor:pointer}
@@ -334,7 +338,8 @@
 </section>
 
 <section class="texte-hybrides" id="texte-hybrides" hidden>
-  <p class="titre-hyb"><span lang="fr">Qu’est-ce qu’une Œuvre Hybride ?</span><span lang="en">What are Hybrid Artworks?</span></p>
+  <button type="button" class="titre-hyb" aria-expanded="false" onclick="var c=document.getElementById('corps-hyb'),o=c.hidden;c.hidden=!o;this.setAttribute('aria-expanded',o)"><span lang="fr">Qu’est-ce qu’une Œuvre Hybride ?</span><span lang="en">What are Hybrid Artworks?</span></button>
+  <div id="corps-hyb" hidden>
   <p><span lang="fr">Inspirée du principe d’Actualisation Perpétuelle — la nature cyclique de la Vie et sa dynamique sinusoïdale —, ma technique épouse ce constat : du chaos naît l’ordre, avant que le chaos ne revienne et ne se dissipe à nouveau.</span><span lang="en">Inspired by the principle of Perpetual Actualisation — the cyclical nature of Life and its sinusoidal dynamic — my technique embraces the fact that from chaos arises order, before chaos returns and dissipates again.</span></p>
   <p><span lang="fr">En peignant, des formes émergent de la dissémination spontanée, en apparence chaotique, des pigments, de l’huile et de l’eau sur la surface.<br>Un visage, un corps, une fleur…</span><span lang="en">In the process of painting, forms emerge from the spontaneous, seemingly chaotic dissemination of pigments, oil and water on the surface.<br>A face, a body, a flower…</span></p>
   <p><span lang="fr">La photographie capte et extrait ces formes — ces états transitoires de la matière — et leur offre une seconde vie par la peinture numérique et le collage.</span><span lang="en">Photography captures and extracts these forms — these transitional states of matter — and gives them a second life through digital painting and collage.</span></p>
@@ -342,6 +347,7 @@
   <p><span lang="fr">Les Hybrides embrassent les techniques traditionnelles et numériques.</span><span lang="en">Hybrids embrace both traditional and digital techniques.</span></p>
   <p><span lang="fr">Cette méthode peut aller plus loin, en mêlant les matériaux traditionnels de la sculpture à des pièces imprimées en 3D. Le mapping lumineux en est la prochaine frontière : insuffler davantage de vie à l’œuvre et vous offrir une expérience plus profondément immersive.</span><span lang="en">This method can be pushed further, merging traditional sculpting materials with 3D-printed pieces. Light mapping is the next frontier — to instil more life into the work and offer you a deeper immersive experience.</span></p>
   <p><span lang="fr">Ces rendus peuvent alors être à nouveau déformés et fragmentés… perpétuant le cycle.</span><span lang="en">These renderings can then be deformed and fragmented again… perpetuating the cycle.</span></p>
+  </div>
 </section>
 
 <div class="mosaique" id="mosaique"></div>
