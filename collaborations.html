@@ -232,10 +232,22 @@
 <!-- Menu plein écran -->
 <nav class="menu" id="menu" aria-hidden="true">
   <button class="fermer" aria-label="Fermer le menu">×</button>
-  <a href="about.html"><span lang="fr">À propos</span><span lang="en">About</span></a>
-  <a href="oeuvres.html"><span lang="fr">Démarche Artistique</span><span lang="en">Artistic Approach</span></a>
   <div class="groupe">
-    <a href="#">Corpus</a>
+    <a href="about.html"><span lang="fr">À propos</span><span lang="en">About</span></a>
+    <div class="sous">
+      <a class="rub-lien" href="about.html"><span lang="fr">Biographie</span><span lang="en">Biography</span></a>
+      <a class="rub-lien" href="apparitions.html"><span lang="fr">Apparitions</span><span lang="en">Appearances</span></a>
+    </div>
+  </div>
+  <div class="groupe">
+    <a href="oeuvres.html"><span lang="fr">Démarche Artistique</span><span lang="en">Artistic Approach</span></a>
+    <div class="sous">
+      <a class="rub-lien" href="oeuvres.html"><span lang="fr">Philosophie</span><span lang="en">Philosophy</span></a>
+      <a class="rub-lien" href="technique.html">Technique</a>
+    </div>
+  </div>
+  <div class="groupe">
+    <a href="peintures.html">Corpus</a>
     <div class="sous">
       <a class="rub-lien" href="peintures.html"><span lang="fr">Œuvres</span><span lang="en">Artworks</span></a>
       <a href="peintures.html#originaux"><span lang="fr">Originales</span><span lang="en">Originals</span></a><a href="peintures.html#hybrides"><span lang="fr">Hybrides</span><span lang="en">Hybrids</span></a>
@@ -256,15 +268,22 @@
     <a href="soul-lab.html">28 Soul Lab</a>
     <div class="sous" data-sans-tout>
       <a class="rub-lien" href="soul-lab.html">Vision</a>
+      <span class="rub"><span lang="fr">Projets</span><span lang="en">Projects</span></span>
       <a class="ligne" href="sanctuaire-sylvestre.html"><span lang="fr">Le Sanctuaire Sylvestre</span><span lang="en">The Sylvan Sanctuary</span></a>
-      <a class="ligne" href="online-space.html">Online Space</a>
+      <a class="ligne" href="online-space.html">Presencia Nobilis</a>
       <a class="rub-lien" href="ateliers.html"><span lang="fr">Expériences</span><span lang="en">Experiences</span></a>
       <a class="ligne" href="ateliers.html"><span lang="fr">L’Art est Soin</span><span lang="en">Art is Care</span></a>
       <a class="ligne" href="solunarte.html">Solunarte</a>
       <a class="ligne" href="synesthetic-tasting.html">Synesthetic Tasting</a>
     </div>
   </div>
-  <a href="collaborations.html">Collaborations</a>
+  <div class="groupe">
+    <a href="collaborations.html">Collaborations</a>
+    <div class="sous">
+      <a class="rub-lien" href="collaborations.html#commandes"><span lang="fr">Commandes</span><span lang="en">Commissions</span></a>
+      <a class="rub-lien" href="collaborations.html#interventions">Interventions</a>
+    </div>
+  </div>
 </nav>
 
 <div class="langues"><button data-l="fr" class="actif">FR</button><button data-l="en">EN</button></div>
@@ -277,28 +296,21 @@
 </header>
 
 <section class="apropos">
-  <p lang="fr" class="exergue">Au-delà de l’atelier, je mets mon regard et mes mains au service de projets partagés.</p>
-  <p lang="fr">Lieux culturels, institutions, écoles, festivals, retraites, entreprises ou particuliers : chaque collaboration naît d’une rencontre et d’une intention commune.</p>
-  <span class="sep" lang="fr" aria-hidden="true">✦</span>
-  <p lang="fr" class="titre-caps">Commandes</p>
-  <p lang="fr">Œuvres originales pensées pour un lieu, une personne ou un moment — sur toile, bois, métal, plexiglas ou supports plus inattendus.</p>
-  <p lang="fr" class="titre-caps">Fresques &amp; Installations</p>
-  <p lang="fr">Fresques murales, installations immersives et scénographies, en intérieur comme en extérieur, pour des espaces publics, culturels ou privés.</p>
-  <p lang="fr" class="titre-caps">Direction Artistique</p>
-  <p lang="fr">Accompagnement d’univers visuels : identité, scénographie d’événements, live painting, conception d’expériences sensibles.</p>
-  <span class="sep" lang="fr" aria-hidden="true">✦</span>
-  <p lang="fr">Parlez-moi de votre projet.</p>
-  <p lang="en" class="exergue">Beyond the studio, I put my eye and my hands in service of shared projects.</p>
-  <p lang="en">Cultural venues, institutions, schools, festivals, retreats, companies or individuals: every collaboration is born from an encounter and a shared intention.</p>
-  <span class="sep" lang="en" aria-hidden="true">✦</span>
-  <p lang="en" class="titre-caps">Commissions</p>
-  <p lang="en">Original works conceived for a place, a person or a moment — on canvas, wood, metal, plexiglass or more unexpected surfaces.</p>
-  <p lang="en" class="titre-caps">Murals &amp; Installations</p>
-  <p lang="en">Murals, immersive installations and scenography, indoors and outdoors, for public, cultural or private spaces.</p>
-  <p lang="en" class="titre-caps">Art Direction</p>
-  <p lang="en">Shaping visual worlds: identity, event scenography, live painting, design of sensory experiences.</p>
-  <span class="sep" lang="en" aria-hidden="true">✦</span>
-  <p lang="en">Tell me about your project.</p>
+  <h1 class="titre-collab">Collaborations</h1>
+  <p class="exergue"><span lang="fr">Nous entrons dans l’ère de la collaboration.</span><span lang="en">We are entering the era of collaboration.</span></p>
+  <p><span lang="fr">Le temps du créateur isolé s’efface. Les œuvres les plus fécondes naissent désormais à la croisée des regards, des savoirs et des lieux : entre l’artiste et le scientifique, l’artisan et l’architecte, le vivant et la cité.</span><span lang="en">The age of the solitary creator is fading. The most fertile works now arise where perspectives, knowledge and places meet: between artist and scientist, craftsperson and architect, the living world and the city.</span></p>
+  <p><span lang="fr">Créer ensemble, c’est tisser du lien autant que des formes.</span><span lang="en">To create together is to weave connection as much as form.</span></p>
+  <p><span lang="fr">Lieux culturels, institutions, écoles, festivals, retraites, entreprises ou particuliers : chaque collaboration naît d’une rencontre et d’une intention commune.</span><span lang="en">Cultural venues, institutions, schools, festivals, retreats, companies or individuals: every collaboration is born from an encounter and a shared intention.</span></p>
+  <span class="sep" aria-hidden="true">✦</span>
+  <p class="titre-caps" id="commandes"><span lang="fr">Commandes</span><span lang="en">Commissions</span></p>
+  <p><span lang="fr">Œuvres picturales ou sculpturales pensées pour un lieu, une personne ou un moment.</span><span lang="en">Pictorial or sculptural works conceived for a place, a person or a moment.</span></p>
+  <p><span lang="fr">Fresques murales, land art et installations immersives, en intérieur comme en extérieur.</span><span lang="en">Murals, land art and immersive installations, indoors and outdoors.</span></p>
+  <p><span lang="fr">Direction artistique : identité, univers visuels, scénographie d’événements.</span><span lang="en">Art direction: identity, visual worlds, event scenography.</span></p>
+  <span class="sep" aria-hidden="true">✦</span>
+  <p class="titre-caps" id="interventions">Interventions</p>
+  <p><span lang="fr">Live painting, interventions artistiques participatives, retraites, conférences et marches contemplatives — pour des festivals, des institutions, des écoles ou des entreprises.</span><span lang="en">Live painting, participatory artistic interventions, retreats, talks and contemplative walks — for festivals, institutions, schools or companies.</span></p>
+  <span class="sep" aria-hidden="true">✦</span>
+  <p><span lang="fr">Parlez-moi de votre projet.</span><span lang="en">Tell me about your project.</span></p>
   <p style="text-align:center"><a class="bouton-collab" href="mailto:eeteesart@gmail.com?subject=Collaboration"><span lang="fr">Me contacter</span><span lang="en">Get in touch</span></a></p>
 </section>
 
