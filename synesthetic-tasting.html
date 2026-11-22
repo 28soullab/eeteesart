@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="fr" data-teinte="violet">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Synesthetic Tasting — 28 Soul Lab, Étienne Boschet</title>
+<meta name="description" content="Eetee (Étienne Boschet), artiste pluridisciplinaire : peinture, sculpture, poésie, film. Écologie de l'être.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&family=Noto+Sans+Egyptian+Hieroglyphs&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Dégradé vert : du presque blanc au vert profond */
+    --t-1:#f5f8f1;
+    --t-2:#e3ecdc;
+    --t-3:#b9cfb0;
+    --t-4:#6f9479;
+    --t-5:#2f5440;
+    --t-6:#13281c;
+    --encre:#1b2c21;
+    --clair:#eef4ea;
+    --ocre:#d99a1e;
+    --serif:"Cormorant Garamond", Georgia, serif;
+    --sans:"Jost", system-ui, sans-serif;
+  }
+  /* Dégradé bleu : du presque blanc au bleu pétrole des creux sculptés */
+  html[data-teinte="bleu"]{
+    --t-1:#f3f7f9;
+    --t-2:#dfe9ef;
+    --t-3:#afc6d3;
+    --t-4:#5f8499;
+    --t-5:#24475d;
+    --t-6:#0e2131;
+    --encre:#142534;
+    --clair:#e9f1f5;
+  }
+  /* Violet pastel qui fonce : 28 Soul Lab */
+  html[data-teinte="violet"]{
+    --t-1:#f7f3fb; --t-2:#e9e0f3; --t-3:#cbb9e3; --t-4:#9278b9; --t-5:#5a417f; --t-6:#271838;
+    --encre:#2a1d3b; --clair:#f2ecf9;
+  }
+  /* Jaune doré qui fonce : Œuvres */
+  html[data-teinte="or"]{
+    --t-1:#fcf9ee; --t-2:#f6eac6; --t-3:#e7cc7f; --t-4:#c19b3d; --t-5:#7c5c18; --t-6:#33240a;
+    --encre:#3a2a0c; --clair:#fbf3de;
+  }
+  /* Dégradé continu : bleu (about) → or (œuvres) → violet (28 Soul Lab) */
+  html[data-teinte="continu"]{
+    --t-1:#f3f7f9; --t-2:#dfe9ef; --t-3:#c9b6e2; --t-4:#8a7a5a; --t-5:#5a417f; --t-6:#221533;
+    --encre:#1f2a35; --clair:#f2ecf9;
+  }
+  html[data-teinte="continu"] body{background:linear-gradient(180deg,
+    #f3f7f9 0, #f3f7f9 100svh, #d9e7ef 24%, #b7cfdd 40%, #f3e5b6 46%, #e2c472 54%, #c9a24a 59%,
+    #b9cfa9 63%, #86a985 72%, #6f9479 77%, #7e69ab 82%, #5a417f 90%, #221533 100%)}
+  *{box-sizing:border-box;margin:0;padding:0}
+
+  /* Sélecteur de teinte (aperçu uniquement) */
+  .teintes{position:fixed;right:1rem;bottom:1rem;z-index:20;display:flex;gap:.4rem;padding:.35rem;
+    background:rgba(255,255,255,.85);backdrop-filter:blur(8px);border-radius:999px;box-shadow:0 2px 12px rgba(0,0,0,.18)}
+  .teintes button{border:0;border-radius:999px;padding:.55rem 1rem;font:500 .78rem var(--sans);letter-spacing:.12em;
+    text-transform:uppercase;cursor:pointer;background:transparent;color:#333}
+  .teintes button.actif{color:#fff}
+  .teintes button[data-t="vert"].actif{background:#2f5440}
+  .teintes button[data-t="bleu"].actif{background:#24475d}
+  .teintes button[data-t="violet"].actif{background:#5a417f}
+  .teintes button[data-t="or"].actif{background:#7c5c18}
+  .teintes button[data-t="continu"].actif{background:linear-gradient(90deg,#5f8499,#c19b3d,#5a417f)}
+  .teintes button{padding:.55rem .7rem}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--sans);font-weight:300;color:var(--encre);line-height:1.7;
+    background:linear-gradient(180deg,
+      var(--t-1) 0, var(--t-1) 100svh, var(--t-2) 28%, var(--t-3) 48%,
+      var(--t-4) 66%, var(--t-5) 84%, var(--t-6) 100%);
+    min-height:100vh;
+  }
+  img{max-width:100%;display:block}
+  a{color:inherit}
+
+  /* Menu : trois barres */
+  .burger{background:none;border:0;cursor:pointer;padding:.8rem;display:grid;gap:6px;color:inherit}
+  .burger .vagues{display:block}
+  /* Petit bouton menu qui reste en haut, centré, une fois l'ouverture passée */
+  .flottant{position:fixed;top:.6rem;left:50%;transform:translate(-50%,-150%);z-index:10;color:var(--encre);
+    background:color-mix(in srgb,var(--t-1) 88%,transparent);backdrop-filter:blur(8px);border-radius:999px;
+    transition:transform .35s}
+  .flottant.visible{transform:translate(-50%,0)}
+  /* Menu plein écran */
+  .menu{position:fixed;inset:0;z-index:30;background:var(--t-6);color:var(--clair);display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:1.6rem;opacity:0;pointer-events:none;transition:opacity .35s}
+  .menu.ouvert{opacity:1;pointer-events:auto}
+  .menu a{font-family:var(--serif);font-size:clamp(1.8rem,7vw,2.6rem);text-decoration:none;letter-spacing:.03em}
+  .menu a:hover{color:var(--ocre)}
+  .menu .groupe{text-align:center}
+  .menu .sous{display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;gap:.3rem .9rem;max-width:22rem;margin:.6rem auto 0}
+  .menu .sous a{font-family:var(--sans);font-size:.95rem;letter-spacing:.06em;opacity:.85}
+  .menu .sous .rub-lien{flex-basis:100%;font-size:.7rem!important;letter-spacing:.3em!important;text-transform:uppercase;color:var(--ocre);opacity:1!important;margin-top:.5rem}
+  .menu .sous .ligne{flex-basis:100%}
+  .menu .sous .rub{flex-basis:100%;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ocre);margin-top:.5rem}
+  .fermer{position:absolute;top:1rem;left:50%;transform:translateX(-50%);background:none;border:0;color:inherit;
+    font-size:2.2rem;line-height:1;cursor:pointer;padding:.5rem}
+
+  /* Ouverture plein écran : logo, nom et menu centrés */
+  .ouverture{position:relative;height:100svh;min-height:560px;overflow:hidden;color:#fff}
+  .ouverture img,.ouverture video{width:100%;height:100%;object-fit:cover}
+  .ouverture::after{content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(ellipse 90% 34% at 50% 44%,rgba(10,20,14,.72),rgba(10,20,14,.35) 60%,transparent 85%),
+      linear-gradient(180deg,transparent 0%,transparent 74%,
+        color-mix(in srgb,var(--t-1) 55%,transparent) 86%,var(--t-1) 100%)}
+  .ouverture .centre{position:absolute;inset:0 0 34% 0;z-index:2;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;gap:1rem}
+  .ouverture .logo{width:min(58vw,360px);height:auto;object-fit:contain;filter:drop-shadow(0 4px 18px rgba(0,0,0,.45))}
+  .nom{font-family:var(--serif);font-weight:400;font-size:clamp(1.9rem,7.5vw,3rem);line-height:1.1;letter-spacing:.12em;
+    text-shadow:0 2px 12px rgba(0,0,0,.5)}
+
+  /* Sections */
+  section{padding:6rem 1.5rem;max-width:1100px;margin:0 auto}
+  h2{font-family:var(--serif);font-weight:400;font-size:clamp(2rem,6vw,3.2rem);line-height:1.1;margin-bottom:1.5rem}
+  .surtitre{font-size:.75rem;letter-spacing:.24em;text-transform:uppercase;color:var(--t-5);margin-bottom:.8rem}
+  .intro{text-align:center}
+  .portrait{width:min(86vw,420px);aspect-ratio:3/4;margin:3rem auto 0;overflow:hidden;
+    border-radius:50% 50% 4px 4px / 37.5% 37.5% 4px 4px;box-shadow:0 18px 50px rgba(0,0,0,.18)}
+  .portrait img{width:100%;height:100%;object-fit:cover;object-position:55% 30%}
+  .titre-role{font-family:var(--sans);font-weight:400;font-size:clamp(.8rem,2.8vw,1rem);letter-spacing:.42em;text-transform:uppercase;
+    margin-top:-.4rem;text-shadow:0 2px 10px rgba(0,0,0,.55);padding-left:.42em}
+  .intro p{font-family:var(--serif);font-size:clamp(1.25rem,3.4vw,1.65rem);line-height:1.55;max-width:40rem;margin:0 auto 1rem}
+  /* Langue : on n'affiche que les textes de la langue choisie */
+  html[lang="fr"] [lang="en"], html[lang="en"] [lang="fr"]{display:none}
+  .langues{position:fixed;top:.9rem;right:1rem;z-index:15;display:flex;gap:.2rem;font:500 .75rem var(--sans);letter-spacing:.14em}
+  .langues button{background:rgba(255,255,255,.18);backdrop-filter:blur(6px);border:0;color:#fff;padding:.4rem .6rem;border-radius:999px;cursor:pointer}
+  .langues button.actif{background:rgba(255,255,255,.85);color:#1b2c21}
+  .intro em{color:var(--t-5)}
+
+  #oeuvres{text-align:center;padding-bottom:3rem}
+  #oeuvres .surtitre{color:#a06a00;font-weight:500}
+  /* Page À propos */
+  .entete-page{text-align:center;padding:3.5rem 1.5rem 0;color:var(--encre)}
+  .logo-page{width:min(52vw,280px);margin:0 auto}
+  .nom-page{font-family:var(--serif);font-size:clamp(1.6rem,6vw,2.4rem);letter-spacing:.1em;margin-top:.4rem}
+  .entete-page .burger{margin:.6rem auto 0}
+  .apropos{text-align:center;max-width:40rem;padding-top:2.5rem}
+  .apropos .portrait{margin:1rem auto 3rem}
+  .apropos p{font-family:var(--serif);font-size:clamp(1.15rem,3.2vw,1.4rem);line-height:1.65;margin:0 auto 1.2rem}
+  .apropos p.exergue{font-size:clamp(1.6rem,5.5vw,2.2rem);font-style:italic;line-height:1.3;margin:1rem auto 1.6rem}
+  .apropos .sep{display:block;margin:2.2rem 0;color:var(--ocre);font-size:.9rem}
+  .apropos em{font-style:italic}
+  .lab-logo{display:block;width:min(70vw,340px);margin:1.5rem auto 0;transition:transform .4s ease}
+  .lab-logo:hover,.lab-logo:active{transform:scale(1.06) rotate(-1.5deg)}
+  .lab-logo img{filter:drop-shadow(0 6px 16px rgba(0,0,0,.18))}
+  .lab-lien{margin-top:1rem;font-size:.9rem}
+  html[data-teinte="violet"] body{background:linear-gradient(180deg,#f7f3fb 0,#ece3f5 30%,#d6c6ea 62%,#a38bcb 82%,#5a417f 93%,#271838 100%)}
+  .logo-lab{width:min(70vw,380px);margin:0 auto}
+  .apropos p.titre-caps{font-family:var(--sans);font-size:.95rem;letter-spacing:.32em;text-transform:uppercase;color:#5a417f;margin:1rem auto 1.5rem}
+  .lotus{width:min(40vw,160px);margin:0 auto .6rem}
+  .formats{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2.5rem 1.5rem;text-align:center;max-width:900px;padding-top:0}
+  .format .cadre{aspect-ratio:4/5;border-radius:20px;display:grid;place-items:center;border:1px dashed var(--t-4);background:rgba(255,255,255,.35);font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+  .format h3{font-family:var(--serif);font-weight:400;font-size:1.6rem;margin:1rem 0 .4rem}
+  .format p{font-size:.9rem;opacity:.8}
+  .devis{padding-top:1rem}
+  .apropos p.titre-caps{font-family:var(--sans);font-size:.95rem;letter-spacing:.32em;text-transform:uppercase;color:#5a417f;margin:1rem auto 2rem}
+  .logo-lab{width:min(78vw,420px);margin:0 auto}
+  .apropos .exergue{text-transform:none}
+  .en-dev{font-family:var(--sans),"Noto Sans Egyptian Hieroglyphs"!important;font-size:.72rem!important;letter-spacing:.22em;text-transform:uppercase;margin-top:2rem!important;opacity:.75;font-family:var(--sans)!important}
+  .lab-lien{font-family:var(--serif);font-size:1.5rem;letter-spacing:.04em;text-transform:none;border-color:var(--encre);color:var(--encre)}
+  /* Objets & Films */
+  .pratiques{text-align:center;padding-top:3rem;padding-bottom:3rem}
+  .pratiques .surtitre{color:var(--encre);opacity:.7}
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:1rem;max-width:640px;margin:0 auto}
+  .duo .carte{max-width:none}
+  .cadre.vide{display:grid;place-items:center;font-family:var(--serif);font-size:1.2rem;
+    background:rgba(255,255,255,.35);border:1px dashed currentColor;box-shadow:none;aspect-ratio:4/5;border-radius:20px}
+  /* Deux images qui se fondent lentement l'une dans l'autre */
+  .cadre.fondu{position:relative}
+  .cadre.fondu img{position:absolute;inset:0}
+  .cadre.fondu img:last-child{animation:fondu 12s ease-in-out infinite}
+  .duo .carte:last-child .cadre.fondu img:last-child{animation-delay:-6s}
+  @keyframes fondu{0%,40%{opacity:0}50%,90%{opacity:1}100%{opacity:0}}
+  @media (prefers-reduced-motion:reduce){.cadre.fondu img:last-child{animation:none;opacity:0}}
+  .film{display:block;max-width:760px;margin:0 auto;text-decoration:none}
+  .film .ecran{aspect-ratio:16/9;border-radius:20px;background:rgba(0,0,0,.28);display:grid;place-items:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.15)}
+  .film .lecture{width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.85);color:#1b2c21;
+    display:grid;place-items:center;font-size:1.4rem;padding-left:4px}
+  .film h3{font-family:var(--serif);font-style:italic;font-weight:400;font-size:1.2rem;margin-top:.8rem}
+  /* Sélection d'œuvres : rangée qu'on fait glisser */
+  .defile{display:flex;gap:1.1rem;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 1.5rem 1rem;
+    margin:0 auto;max-width:1100px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .defile::-webkit-scrollbar{display:none}
+  .carte{flex:0 0 74%;max-width:300px;scroll-snap-align:center;text-decoration:none}
+  .carte .cadre{aspect-ratio:4/5;border-radius:20px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.15);background:var(--t-2)}
+  .carte img{width:100%;height:100%;object-fit:cover;display:block}
+  .carte{text-align:center}
+  .carte h3{font-family:var(--serif);font-style:italic;font-weight:400;font-size:1.15rem;line-height:1.3;margin-top:.8rem;padding:0 .3rem}
+  .carte small{font-size:.78rem;opacity:.75;display:block;padding:0 .3rem;letter-spacing:.06em}
+  .carte .prix{font-size:.85rem;margin-top:.2rem;letter-spacing:.06em}
+  .carte.fin .cadre{display:grid;place-items:center;text-align:center;background:transparent;border:1px solid var(--t-4);
+    box-shadow:none;font-family:var(--serif);font-size:1.4rem;line-height:1.3}
+  @media (min-width:760px){.carte{flex-basis:30%}}
+  .grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.5rem}
+  .oeuvre .cadre{aspect-ratio:4/5;background:rgba(255,255,255,.45);border:1px dashed var(--t-4);
+    display:grid;place-items:center;font-size:.8rem;color:var(--t-5);text-align:center;padding:1rem}
+  /* Formes de cadre */
+  .cadre.arrondi{border-radius:22px}
+  .cadre.arche{border-radius:50% 50% 4px 4px / 40% 40% 4px 4px}
+  .cadre.galet{border-radius:58% 42% 52% 48% / 46% 54% 46% 54%}
+  .cadre img{width:100%;height:100%;object-fit:cover;border-radius:inherit}
+  .oeuvre h3{font-family:var(--serif);font-weight:500;font-size:1.25rem;margin-top:.8rem}
+  .oeuvre small{font-size:.8rem;opacity:.8}
+
+  .bouton{display:inline-block;margin-top:2rem;padding:.85rem 1.6rem;border:1px solid currentColor;
+    text-decoration:none;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;transition:background .2s,color .2s}
+  .bouton:hover{background:var(--encre);color:var(--t-1)}
+
+  #oeuvres .bouton{background:color-mix(in srgb,var(--t-1) 75%,transparent);border-color:var(--encre)}
+  .clair{color:var(--clair)}
+  .clair .surtitre{color:var(--ocre)}
+  .clair .bouton:hover{background:var(--clair);color:var(--t-6)}
+  .lab{text-align:center}
+  .lab p{max-width:38rem;margin:0 auto 1rem;line-height:1.75}
+
+  footer{padding:4rem 1.5rem 3rem;color:var(--clair);opacity:.85;text-align:center;font-size:.85rem}
+  footer .liens{display:flex;flex-wrap:wrap;justify-content:center;gap:.8rem 1.4rem;margin:2.5rem auto 1.5rem;max-width:30rem;letter-spacing:.14em;text-transform:uppercase;font-size:.75rem}
+  footer .contact{margin-top:0}
+  footer .soutien{margin-top:0}
+  footer .soutien .lbl{flex-basis:100%;color:var(--ocre)}
+  footer .mail{margin-top:.8rem;letter-spacing:.06em}
+  /* Cartouches : boutons aux bords arrondis */
+  .bouton,.bouton-collab{border-radius:999px!important}
+  .film .lecture{flex-direction:row!important;gap:.7rem!important;padding:.45rem 1.3rem .45rem .45rem;border:1px solid currentColor;border-radius:999px}
+  .film .lecture .rond{width:36px!important;height:36px!important;font-size:.85rem}
+  .decouvrir-film{border:1px solid currentColor!important;border-radius:999px;padding:.6rem 1.3rem!important;text-decoration:none}
+  .titre-solu{font-family:var(--serif);font-weight:400;font-size:clamp(2.4rem,10vw,3.6rem);margin:.2rem 0 1rem}
+  .devises{font-family:var(--serif);font-style:italic;font-size:1.15rem;line-height:1.7;margin-bottom:1.6rem}
+  .solunarte .exergue-doux{font-style:italic}
+  .apropos p.titre-caps.petit{font-size:.78rem;margin:1.8rem auto .5rem}
+</style>
+</head>
+<body>
+
+<!-- Menu plein écran -->
+<nav class="menu" id="menu" aria-hidden="true">
+  <button class="fermer" aria-label="Fermer le menu">×</button>
+  <a href="about.html"><span lang="fr">À propos</span><span lang="en">About</span></a>
+  <div class="groupe">
+    <a href="oeuvres.html"><span lang="fr">Démarche Artistique</span><span lang="en">Artistic Approach</span></a>
+    <div class="sous">
+      <a class="rub-lien" href="peintures.html"><span lang="fr">Œuvres</span><span lang="en">Artworks</span></a>
+      <a href="peintures.html#originaux"><span lang="fr">Originales</span><span lang="en">Originals</span></a><a href="peintures.html#hybrides"><span lang="fr">Hybrides</span><span lang="en">Hybrids</span></a>
+      <span class="rub"><span lang="fr">Objets</span><span lang="en">Objects</span></span>
+      <a href="#">Sculptures</a><a href="#"><span lang="fr">Bijoux</span><span lang="en">Jewelry</span></a>
+      <span class="rub">Installations &amp; <span lang="fr">Fresques</span><span lang="en">Murals</span></span>
+      <a class="ligne" href="#">Installations</a>
+      <a class="ligne" href="#"><span lang="fr">Fresques</span><span lang="en">Murals</span></a>
+      <a class="rub-lien" href="index.html#films">Films</a>
+      <a class="ligne" href="semina-mirabilia.html"><span lang="fr">Rhapsodies Visuelles</span><span lang="en">Visual Rhapsodies</span></a>
+      <a class="ligne" href="#">Animations</a>
+    </div>
+  </div>
+  <div class="groupe">
+    <a href="soul-lab.html">28 Soul Lab</a>
+    <div class="sous" data-sans-tout>
+      <a class="rub-lien" href="soul-lab.html"><span lang="fr">Écosystème Artistique</span><span lang="en">Artistic Ecosystem</span></a>
+      <a class="ligne" href="#"><span lang="fr">Le Sanctuaire Sylvestre</span><span lang="en">The Sylvan Sanctuary</span></a>
+      <a class="rub-lien" href="ateliers.html"><span lang="fr">Ateliers</span><span lang="en">Workshops</span></a>
+      <a class="ligne" href="solunarte.html">Solunarte</a>
+      <a class="ligne" href="synesthetic-tasting.html">Synesthetic Tasting</a>
+    </div>
+  </div>
+  <a href="collaborations.html">Collaborations</a>
+</nav>
+
+<div class="langues"><button data-l="fr" class="actif">FR</button><button data-l="en">EN</button></div>
+
+<button class="burger flottant" id="flottant" aria-label="Menu"><svg class="vagues" viewBox="0 0 32 22" width="32" height="22" aria-hidden="true"><path d="M2 4 q3.5 -3 7 0 t7 0 t7 0 t7 0 M2 11 q3.5 -3 7 0 t7 0 t7 0 t7 0 M2 18 q3.5 -3 7 0 t7 0 t7 0 t7 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+
+<header class="entete-page">
+  <a href="soul-lab.html"><img class="logo-lab" src="images/logo-28soullab.png" alt="28 Soul Lab"></a>
+  <button class="burger" aria-label="Menu"><svg class="vagues" viewBox="0 0 32 22" width="32" height="22" aria-hidden="true"><path d="M2 4 q3.5 -3 7 0 t7 0 t7 0 t7 0 M2 11 q3.5 -3 7 0 t7 0 t7 0 t7 0 M2 18 q3.5 -3 7 0 t7 0 t7 0 t7 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+</header>
+
+<section class="apropos solunarte">
+  <p class="titre-caps" lang="fr">Ateliers</p><p class="titre-caps" lang="en">Workshops</p>
+  <h1 class="titre-solu">Synesthetic Tasting</h1>
+  <p class="devises"><span lang="fr">Une expérience sensorielle et exploratoire<br>où la dégustation devient expression picturale.</span><span lang="en">A sensory and exploratory experience<br>where tasting becomes pictorial expression.</span></p>
+  <span class="sep" aria-hidden="true">✦</span>
+  <p lang="fr">Comment traduire le goût et l’odorat en couleur, en texture et en forme ? Non pas pour juger un mets ou une boisson, mais pour le percevoir plus profondément.</p><p lang="en">How can taste and smell be translated into colour, texture and form? Not to judge the food or the drink, but to notice it more deeply.</p>
+  <span class="sep" aria-hidden="true">✦</span>
+  <p class="titre-caps petit" lang="fr">Format modulable</p><p class="titre-caps petit" lang="en">Adaptable format</p>
+  <p lang="fr">De deux heures à un week-end, à combiner avec Solunarte.</p><p lang="en">From two hours to a weekend, and can be combined with Solunarte.</p>
+  <p class="titre-caps petit" lang="fr">Dégustation de boissons</p><p class="titre-caps petit" lang="en">Beverage tasting</p>
+  <p lang="fr">Thés, jus, mocktails, cocktails, vins, bières… comme autant de sources d’inspiration.</p><p lang="en">Teas, juices, mocktails, cocktails, wines, beers… as wellsprings of inspiration.</p>
+  <p class="titre-caps petit" lang="fr">Expérience culinaire</p><p class="titre-caps petit" lang="en">Culinary experience</p>
+  <p lang="fr">Un accord complet de mets et de boissons, où chaque plat inspire une nouvelle trace sur la surface.</p><p lang="en">A full pairing of dishes and drinks, where every course inspires a new trace on the surface.</p>
+  <p class="titre-caps petit" lang="fr">Prolongement possible</p><p class="titre-caps petit" lang="en">Optional extension</p>
+  <p lang="fr">Ici aussi, je peux composer sur cette base participative, pour donner naissance à une œuvre qui préserve, transforme et relie les dynamiques, les formes et les éléments apportés par les participants.</p><p lang="en">Here too, I can compose upon this participatory base, giving birth to an artwork that preserves, transforms and binds together the dynamics, shapes and elements brought by the participants.</p>
+</section>
+
+<section class="apropos devis">
+  <p lang="fr">Tarifs adaptés au format, à la taille du groupe et au lieu.<br><strong>Devis sur demande.</strong></p>
+  <p lang="en">Pricing tailored to format, group size and setting.<br><strong>Quote on request.</strong></p>
+  <a class="bouton" href="mailto:eeteesart@gmail.com"><span lang="fr">Demander un devis</span><span lang="en">Request a quote</span></a>
+</section>
+
+<footer id="contact">
+  <a class="bouton contact" href="mailto:eeteesart@gmail.com">Contact</a>
+  <p class="mail">eeteesart@gmail.com</p>
+  <div class="liens">
+    <a href="https://www.instagram.com/28soullab">Instagram</a>
+    <a href="https://substack.com/@28soullab">Substack</a>
+    <a href="https://www.linkedin.com/in/etienne-boschet-bb8525a3">LinkedIn</a>
+  </div>
+  <div class="liens soutien">
+    <span class="lbl"><span lang="fr">Soutenir</span><span lang="en">Support</span></span>
+    <a href="https://www.patreon.com/28SoulLab">Patreon</a>
+    <a href="https://buymeacoffee.com/28soullab">Buy Me a Coffee</a>
+  </div>
+  <p>© Étienne Boschet · eetee</p>
+</footer>
+
+
+
+<script>
+  document.querySelectorAll('.teintes button').forEach(b=>b.addEventListener('click',()=>{
+    document.documentElement.dataset.teinte=b.dataset.t;
+    document.querySelectorAll('.teintes button').forEach(x=>x.classList.toggle('actif',x===b));
+  }));
+  const choisirLangue=l=>{document.documentElement.lang=l;
+    document.querySelectorAll('.langues button').forEach(x=>x.classList.toggle('actif',x.dataset.l===l));
+    try{localStorage.setItem('langue',l)}catch(e){}};
+  document.querySelectorAll('.langues button').forEach(b=>b.addEventListener('click',()=>choisirLangue(b.dataset.l)));
+  try{const l=localStorage.getItem('langue');if(l)choisirLangue(l)}catch(e){}
+  const menu=document.getElementById('menu');
+  document.querySelectorAll('.burger').forEach(b=>b.addEventListener('click',()=>menu.classList.add('ouvert')));
+  menu.addEventListener('click',e=>{ if(e.target.closest('a,.fermer')) menu.classList.remove('ouvert'); });
+  const f=document.getElementById('flottant');
+  const maj=()=>f.classList.toggle('visible',window.scrollY>window.innerHeight*0.75);
+  window.addEventListener('scroll',maj,{passive:true});maj();
+</script>
+<script src="menu-plis.js"></script>
+</body>
+</html>
