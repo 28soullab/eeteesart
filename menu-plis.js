@@ -33,3 +33,25 @@
     });
   });
 })();
+
+/* Niveau 1 : les entrées blanches à sous-menu se déplient, avec une lueur lente */
+(function(){
+  var css=document.createElement('style');
+  css.textContent=
+    '@keyframes lueur{0%,100%{opacity:.72;text-shadow:none}50%{opacity:1;text-shadow:0 0 14px rgba(255,255,255,.75)}}'+
+    '.menu .groupe>.titre-plis{animation:lueur 2.6s ease-in-out infinite;cursor:pointer}'+
+    '.menu .groupe.ouvert>.titre-plis{animation:none;opacity:1}'+
+    '.menu .groupe>.sous{display:none!important}'+
+    '.menu .groupe.ouvert>.sous{display:flex!important;animation:plis .4s ease}';
+  document.head.appendChild(css);
+  document.querySelectorAll('.menu .groupe').forEach(function(g){
+    var t0=g.firstElementChild; if(!t0||!g.querySelector('.sous'))return; var t=t0.cloneNode(true); t0.replaceWith(t);
+    t.classList.add('titre-plis'); t.setAttribute('role','button'); t.setAttribute('aria-expanded','false');
+    t.addEventListener('click',function(e){
+      e.preventDefault();e.stopPropagation();
+      var ouvrir=!g.classList.contains('ouvert');
+      document.querySelectorAll('.menu .groupe.ouvert').forEach(function(x){x.classList.remove('ouvert');x.firstElementChild.setAttribute('aria-expanded','false')});
+      if(ouvrir){g.classList.add('ouvert');t.setAttribute('aria-expanded','true')}
+    });
+  });
+})();
