@@ -156,7 +156,7 @@
   .encadre-film{max-width:560px;margin:2.2rem auto 0;padding:2.4rem 1.6rem 2rem;border-radius:20px;
     background:linear-gradient(180deg,#f4f5f0 0%,#d6dccd 35%,#a3b597 66%,#5f7a52 80%,#2f4a26 90%,#1c3315 100%);
     color:#14200f;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.25)}
-  .encadre-film p{font-family:var(--sans);font-weight:600;font-size:.86rem;line-height:1.65;letter-spacing:.06em;text-transform:uppercase;margin:0 auto 1.1rem;max-width:30rem}
+  .encadre-film p{font-family:var(--sans);font-weight:500;font-size:.95rem;line-height:1.65;letter-spacing:.01em;margin:0 auto 1.1rem;max-width:30rem}
   .encadre-film p.titre-oeuvre{font-weight:700;letter-spacing:.08em}
   .encadre-film p.final{margin-bottom:1.6rem}
   .encadre-film img{width:min(78%,360px);display:block;margin:0 auto}
@@ -253,6 +253,13 @@
   .decouvrir-film,.bouton.decouvrir-lab{background:rgba(255,255,255,.14)!important;border:1.5px solid #fff!important;color:#1a1a1a!important}
   .bouton.decouvrir-lab{color:#fff!important}
   .fleche-or{color:#d9a92a;margin-left:.35em;font-size:1.15em}
+  .lien-sanct{color:inherit;text-decoration:underline;text-underline-offset:3px;font-weight:700}
+  .poeme{max-width:34rem;margin:2.6rem auto 0;text-align:center}
+  .titre-poeme{font-family:var(--serif);font-style:italic;font-size:clamp(1.35rem,5.5vw,1.7rem);line-height:1.35;color:inherit;background:none;border:0;cursor:pointer;padding:.3rem .6rem}
+  .titre-poeme::after{content:" ▾";font-style:normal;font-size:.6em;display:inline-block;transition:transform .3s}
+  .titre-poeme[aria-expanded="true"]::after{transform:rotate(180deg)}
+  #corps-poeme{margin-top:1.2rem;font-family:var(--serif);font-size:1.05rem;line-height:1.9;animation:plis .35s ease}
+  @keyframes plis{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
 </style>
 </head>
 <body>
@@ -280,7 +287,7 @@
     <a href="soul-lab.html">28 Soul Lab</a>
     <div class="sous" data-sans-tout>
       <a class="rub-lien" href="soul-lab.html"><span lang="fr">Écosystème Artistique</span><span lang="en">Artistic Ecosystem</span></a>
-      <a class="ligne" href="#"><span lang="fr">Le Sanctuaire Sylvestre</span><span lang="en">The Sylvan Sanctuary</span></a>
+      <a class="ligne" href="sanctuaire-sylvestre.html"><span lang="fr">Le Sanctuaire Sylvestre</span><span lang="en">The Sylvan Sanctuary</span></a>
       <a class="rub-lien" href="ateliers.html"><span lang="fr">Ateliers</span><span lang="en">Workshops</span></a>
       <a class="ligne" href="solunarte.html">Solunarte</a>
       <a class="ligne" href="synesthetic-tasting.html">Synesthetic Tasting</a>
@@ -306,13 +313,43 @@
     <a class="lecture" href="https://youtu.be/yEqXGzHQUkE" target="_blank" rel="noopener" data-yt="yEqXGzHQUkE"><span class="rond" aria-hidden="true">▶</span>
       <span lang="fr">Voir l’intro</span><span lang="en">Watch the intro</span></a>
   <div class="encadre-film">
-    <p><span lang="fr">Au printemps 2026, je suis parti pour une marche initiatique de plusieurs semaines, de la Suisse au Portugal.</span><span lang="en">In spring 2026, I set out on an initiatory walk lasting several weeks, from Switzerland to Portugal.</span></p>
+    <p><span lang="fr">Au printemps 2026, je suis parti pour une marche initiatique de plusieurs semaines, des courbes alpines de la Suisse aux rivages et aux forêts du Portugal.</span><span lang="en">In spring 2026, I set out on an initiatory walk lasting several weeks, from the Alpine curves of Switzerland to the shores and forests of Portugal.</span></p>
     <p><span lang="fr">Cette traversée donnera naissance à une Rhapsodie Visuelle intitulée :</span><span lang="en">This crossing will give birth to a Visual Rhapsody entitled:</span></p>
     <p class="titre-oeuvre"><span lang="fr">Semina Mirabilia – a Mutiny for the Marvellous</span><span lang="en">Semina Mirabilia – a Mutiny for the Marvellous</span></p>
-    <p><span lang="fr">Une œuvre immersive qui tisse ensemble peinture, paysage, mouvement et poésie, et interroge notre manière de communier avec le vivant.</span><span lang="en">An immersive work weaving together painting, landscape, movement and poetry, and questioning the way we commune with the living.</span></p>
-    <p><span lang="fr">Ni exploit sportif, ni documentaire classique, cette marche est une expérience de dépouillement et de passage :<br>ralentir et écouter davantage.</span><span lang="en">Neither a sporting feat nor a classic documentary, this walk is an experience of stripping back and of passage:<br>slow down and listen more.</span></p>
-    <p class="final"><span lang="fr">La marche comme acte artistique et philosophique.</span><span lang="en">Walking as an artistic and philosophical act.</span></p>
+    <p><span lang="fr">Une œuvre immersive qui tisse ensemble art pictural et sculptural, paysage, mouvement et poésie, et explore la communion et l’intimité avec le vivant et au-delà.</span><span lang="en">An immersive work weaving together pictorial and sculptural art, landscape, movement and poetry, and exploring communion and intimacy with the living and beyond.</span></p>
+    <p><span lang="fr">Ni exploit sportif, ni documentaire classique, cette marche est une expérience de dépouillement et de passage :<br>ralentir et être pleinement présent.</span><span lang="en">Neither a sporting feat nor a classic documentary, this walk is an experience of stripping back and of passage:<br>slow down and be fully present.</span></p>
+    <p><span lang="fr">La marche comme acte artistique et philosophique.</span><span lang="en">Walking as an artistic and philosophical act.</span></p>
+    <p class="final"><span lang="fr">Cette exploration aventureuse est l’élan fondateur du 28 Soul Lab.<br>L’horizon de ce pèlerinage était le <a class="lien-sanct" href="sanctuaire-sylvestre.html">Sanctuaire Sylvestre</a>.</span><span lang="en">This adventurous exploration is the founding impulse of 28 Soul Lab.<br>The horizon of this pilgrimage was the <a class="lien-sanct" href="sanctuaire-sylvestre.html">Sylvan Sanctuary</a>.</span></p>
     <img src="images/films/semina-yeux.png" alt="Deux yeux et une graine incandescente" loading="lazy">
+  </div>
+  <div class="poeme">
+    <button type="button" class="titre-poeme" aria-expanded="false" onclick="var c=document.getElementById('corps-poeme'),o=c.hidden;c.hidden=!o;this.setAttribute('aria-expanded',o)"><span lang="fr">Marcher réveille la mémoire du Monde.</span><span lang="en">Walking awakens the memory of the World.</span></button>
+    <div id="corps-poeme" hidden>
+      <p lang="fr">L’humanité s’est pensée par le pas.<br>
+Le pied qui rencontre la Terre transforme.<br>
+Le voyage pédestre est une vague discrète mais d’une puissance sans pareille.<br>
+Elle purifie sans bruit, elle reconduit l’Être vers sa juste mesure.<br>
+La lenteur est une déferlante de subtilité, c’est une Poésie.<br>
+Un piédestal pour la Présence.<br>
+Chaque foulée est une louange sans mots, par laquelle toutes les cellules sourient.<br>
+La bonté du sol et la montée du Soi…<br>
+Le sentier est parchemin et je suis encre fluide.<br>
+Tel un Troubadour des Temps Modernes, je file en Pèlerin du Lien Vivant.<br>
+En Explorateur Esthète je me tiens au seuil, à l’écoute, en transcription du subtilement sensible.<br>
+En Baroudeur Contemplatif émerveillé, je frémis et danse avec le Réel.</p>
+      <p lang="en">Humanity thought itself into being through the step.<br>
+The foot meeting the Earth transforms.<br>
+The pedestrian journey is a discreet wave of unparalleled power.<br>
+It purifies without noise, it leads the Being back to its just measure.<br>
+Slowness is a surge of subtlety, a nurturing Poetry.<br>
+A pedestal for Presence.<br>
+Each stride is a wordless Praise through which every cell smiles.<br>
+The benevolence of the Soil and the rising of the Self…<br>
+The Path is parchment and I am fluid ink.<br>
+Like a Troubadour of Modern Times, I spin as a Pilgrim of the Living Bond.<br>
+As an Aesthetic Explorer, I stand at the Threshold, listening, transcribing the subtly Sensible.<br>
+As a wonderstruck Contemplative Wayfarer, I tremble and dance with the Real.</p>
+    </div>
   </div>
   </div>
 </section>
