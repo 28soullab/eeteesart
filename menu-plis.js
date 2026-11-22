@@ -34,18 +34,28 @@
   });
 })();
 
-/* Niveau 1 : les entrées blanches clignotent puis les jaunes se révèlent */
+/* Niveau 1 : les entrées blanches pulsent doucement ; un toucher révèle seulement leur section */
 (function(){
   var css=document.createElement('style');
   css.textContent=
-    '@keyframes lueur{0%,100%{opacity:.7;text-shadow:none}50%{opacity:1;text-shadow:0 0 14px rgba(255,255,255,.75)}}'+
-    '.menu .groupe>.sous{display:none!important}'+'.menu.revele{justify-content:flex-start!important;overflow-y:auto!important;padding-top:4.5rem!important;padding-bottom:3rem!important}'+'.menu.revele .groupe{margin:.2rem 0!important}'+
-    '.menu.ouvert:not(.revele) .groupe>a{animation:lueur 1.3s ease-in-out 2}'+
-    '.menu.revele .groupe>.sous{display:flex!important;animation:plis .6s ease}';
+    '@keyframes lueur{0%,100%{opacity:.68;text-shadow:none}50%{opacity:1;text-shadow:0 0 16px rgba(255,255,255,.6)}}'+
+    '.menu .groupe>.sous{display:none!important}'+
+    '.menu .groupe>.titre-plis{animation:lueur 4.5s ease-in-out infinite;cursor:pointer}'+
+    '.menu .groupe.ouvert>.titre-plis{animation:none;opacity:1}'+
+    '.menu .groupe.ouvert>.sous{display:flex!important;animation:plis .5s ease}'+
+    '.menu.revele{justify-content:flex-start!important;overflow-y:auto!important;padding-top:4.5rem!important;padding-bottom:3rem!important}';
   document.head.appendChild(css);
-  var m=document.getElementById('menu'); if(!m)return; var tm;
-  new MutationObserver(function(){
-    if(m.classList.contains('ouvert')){ if(!tm&&!m.classList.contains('revele')) tm=setTimeout(function(){m.classList.add('revele');tm=null},2600); }
-    else { clearTimeout(tm); tm=null; m.classList.remove('revele'); }
-  }).observe(m,{attributes:true,attributeFilter:['class']});
+  var m=document.getElementById('menu');
+  document.querySelectorAll('.menu .groupe').forEach(function(g){
+    var t0=g.firstElementChild; if(!t0||!g.querySelector('.sous'))return;
+    var t=t0.cloneNode(true); t0.replaceWith(t);
+    t.classList.add('titre-plis'); t.setAttribute('role','button'); t.setAttribute('aria-expanded','false');
+    t.addEventListener('click',function(e){
+      e.preventDefault();e.stopPropagation();
+      var ouvrir=!g.classList.contains('ouvert');
+      document.querySelectorAll('.menu .groupe.ouvert').forEach(function(x){x.classList.remove('ouvert');x.firstElementChild.setAttribute('aria-expanded','false')});
+      if(ouvrir){g.classList.add('ouvert');t.setAttribute('aria-expanded','true')}
+      if(m)m.classList.toggle('revele',ouvrir);
+    });
+  });
 })();
