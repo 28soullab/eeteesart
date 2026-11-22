@@ -39,7 +39,7 @@
   var css=document.createElement('style');
   css.textContent=
     '@keyframes lueur{0%,100%{opacity:.72;text-shadow:none}50%{opacity:1;text-shadow:0 0 14px rgba(255,255,255,.75)}}'+
-    '.menu .groupe>.titre-plis{animation:lueur 2.6s ease-in-out infinite;cursor:pointer}'+
+    '.menu .groupe>.titre-plis,.menu>a{animation:lueur 2.6s ease-in-out infinite;cursor:pointer}'+
     '.menu .groupe.ouvert>.titre-plis{animation:none;opacity:1}'+
     '.menu .groupe>.sous{display:none!important}'+
     '.menu .groupe.ouvert>.sous{display:flex!important;animation:plis .4s ease}';
