@@ -167,6 +167,9 @@
   /* ---- Page Peintures ---- */
   .galerie-tete{text-align:center;padding:2rem 1rem 1rem}
   .galerie-tete .titre-caps{font-family:var(--sans);font-size:.95rem;letter-spacing:.32em;text-transform:uppercase;color:#b0566e;margin-bottom:1.2rem}
+  .texte-hybrides{max-width:34rem;margin:.4rem auto 2rem;padding:0 1.4rem;text-align:center;font-size:.92rem;line-height:1.7}
+  .texte-hybrides p{margin:0 0 1rem}
+  .texte-hybrides .titre-hyb{font-family:var(--serif);font-style:italic;font-size:1.25rem;margin-bottom:1.2rem}
   .filtres{display:flex;justify-content:center;gap:.4rem;flex-wrap:wrap}
   .filtres button{background:none;border:1px solid transparent;border-radius:999px;padding:.45rem .9rem;font:500 .72rem var(--sans);
     letter-spacing:.16em;text-transform:uppercase;color:var(--encre);opacity:.6;cursor:pointer}
@@ -328,6 +331,17 @@
     <button data-f="originaux"><span lang="fr">Originaux</span><span lang="en">Originals</span></button>
     <button data-f="hybrides"><span lang="fr">Hybrides</span><span lang="en">Hybrids</span></button>
   </nav>
+</section>
+
+<section class="texte-hybrides" id="texte-hybrides" hidden>
+  <p class="titre-hyb"><span lang="fr">Qu’est-ce qu’une Œuvre Hybride ?</span><span lang="en">What are Hybrid Artworks?</span></p>
+  <p><span lang="fr">Inspirée du principe d’Actualisation Perpétuelle — la nature cyclique de la Vie et sa dynamique sinusoïdale —, ma technique épouse ce constat : du chaos naît l’ordre, avant que le chaos ne revienne et ne se dissipe à nouveau.</span><span lang="en">Inspired by the principle of Perpetual Actualisation — the cyclical nature of Life and its sinusoidal dynamic — my technique embraces the fact that from chaos arises order, before chaos returns and dissipates again.</span></p>
+  <p><span lang="fr">En peignant, des formes émergent de la dissémination spontanée, en apparence chaotique, des pigments, de l’huile et de l’eau sur la surface.<br>Un visage, un corps, une fleur…</span><span lang="en">In the process of painting, forms emerge from the spontaneous, seemingly chaotic dissemination of pigments, oil and water on the surface.<br>A face, a body, a flower…</span></p>
+  <p><span lang="fr">La photographie capte et extrait ces formes — ces états transitoires de la matière — et leur offre une seconde vie par la peinture numérique et le collage.</span><span lang="en">Photography captures and extracts these forms — these transitional states of matter — and gives them a second life through digital painting and collage.</span></p>
+  <p><span lang="fr">Je travaille aussi avec la sculpture et mon environnement, le milieu lui-même — déformer, flouter, découper — pour donner naissance à des œuvres figuratives ou non figuratives.</span><span lang="en">I also work with sculpture and my surroundings, the environment itself — deforming, blurring, cutting — to give birth to figurative or non-figurative artworks.</span></p>
+  <p><span lang="fr">Les Hybrides embrassent les techniques traditionnelles et numériques.</span><span lang="en">Hybrids embrace both traditional and digital techniques.</span></p>
+  <p><span lang="fr">Cette méthode peut aller plus loin, en mêlant les matériaux traditionnels de la sculpture à des pièces imprimées en 3D. Le mapping lumineux en est la prochaine frontière : insuffler davantage de vie à l’œuvre et vous offrir une expérience plus profondément immersive.</span><span lang="en">This method can be pushed further, merging traditional sculpting materials with 3D-printed pieces. Light mapping is the next frontier — to instil more life into the work and offer you a deeper immersive experience.</span></p>
+  <p><span lang="fr">Ces rendus peuvent alors être à nouveau déformés et fragmentés… perpétuant le cycle.</span><span lang="en">These renderings can then be deformed and fragmented again… perpetuating the cycle.</span></p>
 </section>
 
 <div class="mosaique" id="mosaique"></div>
@@ -2555,43 +2569,6 @@
   "sous_titre": "Experiment 68"
  },
  {
-  "fichier": "180-humble-somme.jpg",
-  "titre": "Humble Somme Biologique,\nAbîmée en Mer Rêvée",
-  "annee": "2024",
-  "technique_fr": "Huile & Acrylique sur Plexiglas",
-  "technique_en": "Oil & Acrylic on Plexiglass",
-  "format": "195 × 155 cm",
-  "prix": "12 000 €",
-  "categorie": "figurative",
-  "hybride": false,
-  "tirage_seul": false,
-  "vendu": false
- },
- {
-  "fichier": "182-luisant-fil-dor.jpg",
-  "titre": "Luisant Fil d’Or dans la Nuée",
-  "annee": "2026",
-  "technique_fr": "Hybride (Huile, Acrylique et Retouche Numérique)",
-  "technique_en": "Hybrid (Oil, Acrylic and Digital Retouching)",
-  "categorie": "figurative",
-  "hybride": true,
-  "tirage_seul": true,
-  "vendu": false
- },
- {
-  "fichier": "178-couronne-spiralee.jpg",
-  "titre": "Couronne Spiralée",
-  "annee": "2021",
-  "technique_fr": "Huile sur Toile",
-  "technique_en": "Oil on Canvas",
-  "format": "129 × 83 cm",
-  "prix": "4 000 €",
-  "categorie": "figurative",
-  "hybride": false,
-  "tirage_seul": false,
-  "vendu": false
- },
- {
   "fichier": "185-benevolence-soil.jpg",
   "titre": "The Benevolence of the Soil, the Rising of the Self",
   "annee": "2026",
@@ -2659,6 +2636,43 @@
   "categorie": "figurative",
   "hybride": true,
   "tirage_seul": true,
+  "vendu": false
+ },
+ {
+  "fichier": "180-humble-somme.jpg",
+  "titre": "Humble Somme Biologique,\nAbîmée en Mer Rêvée",
+  "annee": "2024",
+  "technique_fr": "Huile & Acrylique sur Plexiglas",
+  "technique_en": "Oil & Acrylic on Plexiglass",
+  "format": "195 × 155 cm",
+  "prix": "12 000 €",
+  "categorie": "figurative",
+  "hybride": false,
+  "tirage_seul": false,
+  "vendu": false
+ },
+ {
+  "fichier": "182-luisant-fil-dor.jpg",
+  "titre": "Luisant Fil d’Or dans la Nuée",
+  "annee": "2026",
+  "technique_fr": "Hybride (Huile, Acrylique et Retouche Numérique)",
+  "technique_en": "Hybrid (Oil, Acrylic and Digital Retouching)",
+  "categorie": "figurative",
+  "hybride": true,
+  "tirage_seul": true,
+  "vendu": false
+ },
+ {
+  "fichier": "178-couronne-spiralee.jpg",
+  "titre": "Couronne Spiralée",
+  "annee": "2021",
+  "technique_fr": "Huile sur Toile",
+  "technique_en": "Oil on Canvas",
+  "format": "129 × 83 cm",
+  "prix": "4 000 €",
+  "categorie": "figurative",
+  "hybride": false,
+  "tirage_seul": false,
   "vendu": false
  },
  {
@@ -2810,7 +2824,7 @@
     if(e.key==='Escape')fermer();if(e.key==='ArrowLeft')ouvrir(courant-1);if(e.key==='ArrowRight')ouvrir(courant+1)});
   let x0=null;fiche.addEventListener('touchstart',e=>x0=e.touches[0].clientX,{passive:true});
   fiche.addEventListener('touchend',e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>50)ouvrir(courant+(dx<0?1:-1));x0=null});
-  function appliquerFiltre(f){filtre=f;document.querySelectorAll('.filtres button').forEach(b=>b.classList.toggle('actif',b.dataset.f===f));dessiner()}
+  function appliquerFiltre(f){filtre=f;document.getElementById('texte-hybrides').hidden=(f!=='hybrides');document.querySelectorAll('.filtres button').forEach(b=>b.classList.toggle('actif',b.dataset.f===f));dessiner()}
   document.querySelectorAll('.filtres button').forEach(b=>b.onclick=()=>{appliquerFiltre(b.dataset.f);history.replaceState(null,'',b.dataset.f==='tout'?location.pathname:'#'+b.dataset.f)});
   document.querySelectorAll('.langues button').forEach(b=>b.addEventListener('click',()=>setTimeout(dessiner,0)));
   window.addEventListener('hashchange',()=>{const f=location.hash.slice(1);appliquerFiltre(['originaux','hybrides'].includes(f)?f:'tout')});
