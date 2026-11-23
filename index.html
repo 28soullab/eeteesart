@@ -486,7 +486,7 @@
 (function(){
   var r=document.getElementById('roles'); if(!r)return;
   var fr=['Peintre','Poète','Sculpteur','Troubadour','Virevolteur','Gourmet','Sublimateur'];
-  var en=['Painter','Poet','Sculptor','Troubadour','Whirler','Gourmet','Sublimator'];
+  var en=['Painter','Poet','Sculptor','Troubadour','Wanderer','Gourmet','Sublimator'];
   if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){r.classList.add('final');return;}
   var sf=r.querySelector('[lang=fr]'), se=r.querySelector('[lang=en]'), i=0;
   sf.textContent=fr[0]; se.textContent=en[0];
