@@ -41,6 +41,7 @@
   css.textContent=
     '@keyframes lueur{0%,100%{opacity:.68;text-shadow:none}50%{opacity:1;text-shadow:0 0 16px rgba(255,255,255,.6)}}'+
     '.menu .groupe>.sous{display:none!important}'+
+    '.menu .groupe>a.lien-direct{animation:lueur 4.5s ease-in-out infinite}'+
     '.menu .groupe>.titre-plis{animation:lueur 4.5s ease-in-out infinite;cursor:pointer}'+
     '.menu .groupe.ouvert>.titre-plis{animation:none;opacity:1}'+
     '.menu .groupe.ouvert>.sous{display:flex!important;animation:plis .5s ease}'+
