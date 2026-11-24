@@ -419,6 +419,26 @@
   "prix": "250 CHF"
  },
  {
+  "nom": "cyclopean-coral",
+  "titre": "Cyclopean Coral",
+  "vues": 2,
+  "annee": "2023",
+  "matiere_fr": "Pierre de Provence",
+  "matiere_en": "Provence stone",
+  "format": "",
+  "prix": ""
+ },
+ {
+  "nom": "pierre-percee",
+  "titre": "Pierre Percée",
+  "vues": 4,
+  "annee": "2023",
+  "matiere_fr": "Pierre de Bourgogne",
+  "matiere_en": "Burgundy stone",
+  "format": "",
+  "prix": ""
+ },
+ {
   "nom": "fragment-forestier-1",
   "titre": "Fragment Forestier 1",
   "vues": 4,
@@ -524,7 +544,7 @@
     document.getElementById('fiche-titre').textContent=o.titre;
     document.getElementById('fiche-infos').textContent=[o.annee,en?o.matiere_en:o.matiere_fr,o.format].filter(x=>x).join(' · ');
     const ed=en?o.edition_en:o.edition_fr; const e=document.getElementById('fiche-edition'); e.textContent=ed||''; e.style.display=ed?'':'none';
-    document.getElementById('fiche-prix').textContent=o.vendu?(en?'Sold':'Vendue'):o.prix;
+    document.getElementById('fiche-prix').textContent=o.vendu?(en?'Sold':'Vendue'):(o.prix||(en?'Price on request':'Prix sur demande'));
     const a=document.getElementById('fiche-achat');
     if(o.vendu){a.style.display='none'}else{a.style.display='';a.textContent=en?'Acquire this work':'Acquérir cette œuvre';
       a.href='mailto:eeteesart@gmail.com?subject='+encodeURIComponent('Acquisition — '+o.titre);}
