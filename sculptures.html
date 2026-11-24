@@ -384,19 +384,19 @@
 
 <!--
   LISTE DES SCULPTURES — "vues" = nombre de photos (images/sculptures/NOM-1.webp, -2…).
-  Ajouter les nouvelles À LA FIN : elles s'afficheront en premier.
+  Affichées dans l'ordre de la liste.
 -->
 <script type="application/json" id="donnees-sculptures">
 [
  {
-  "nom": "fragment-forestier-4",
-  "titre": "Fragment Forestier 4",
+  "nom": "fragment-forestier-2",
+  "titre": "Fragment Forestier 2",
   "vues": 4,
   "annee": "2026",
   "matiere_fr": "Pierre de Bourgogne",
   "matiere_en": "Burgundy stone",
-  "format": "4,5 × 3 × 2 cm",
-  "prix": "80 CHF"
+  "format": "9 × 6 × 2 cm",
+  "prix": "180 CHF"
  },
  {
   "nom": "fragment-forestier-3",
@@ -407,6 +407,16 @@
   "matiere_en": "Burgundy stone",
   "format": "7 × 5 × 2 cm",
   "prix": "130 CHF"
+ },
+ {
+  "nom": "fragment-forestier-4",
+  "titre": "Fragment Forestier 4",
+  "vues": 4,
+  "annee": "2026",
+  "matiere_fr": "Pierre de Bourgogne",
+  "matiere_en": "Burgundy stone",
+  "format": "4,5 × 3 × 2 cm",
+  "prix": "80 CHF"
  }
 ]
 </script>
@@ -447,7 +457,7 @@
   window.addEventListener('scroll',maj,{passive:true});maj();
 
   // ---- Galerie Sculptures ----
-  const P=JSON.parse(document.getElementById('donnees-sculptures').textContent).reverse();
+  const P=JSON.parse(document.getElementById('donnees-sculptures').textContent);
   const mos=document.getElementById('mosaique'), fiche=document.getElementById('fiche'), img=document.getElementById('fiche-img'), vues=document.getElementById('fiche-vues');
   const lang=()=>document.documentElement.lang==='en'?'en':'fr';
   let courant=0;
