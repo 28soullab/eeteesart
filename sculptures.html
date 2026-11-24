@@ -283,7 +283,9 @@
   .film .lecture .rond{width:36px!important;height:36px!important;font-size:.85rem}
   .decouvrir-film{border:1px solid currentColor!important;border-radius:999px;padding:.6rem 1.3rem!important;text-decoration:none}
   .mosaique .objet{background:radial-gradient(ellipse at 50% 45%,rgba(255,255,255,.75),rgba(255,255,255,.25) 70%)}
-  .mosaique .objet img{object-fit:contain!important;padding:8%}
+  .mosaique .objet{position:relative}
+  .mosaique .objet img{object-fit:contain!important;padding:8%;position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity 1.6s ease}
+  .mosaique .objet img.vis{opacity:1}
   .fiche .vues{display:flex;gap:.5rem;justify-content:center;margin-top:.8rem}
   .fiche .vues button{width:52px;height:52px;border-radius:10px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);padding:4px;cursor:pointer;opacity:.6}
   .fiche .vues button.actif{opacity:1;border-color:#f2cf6b}
@@ -443,9 +445,14 @@
     mos.innerHTML='';
     P.forEach((o,i)=>{
       const b=document.createElement('button'); b.className='objet';
-      b.innerHTML=`<img src="images/sculptures/vignettes/${o.nom}.webp" alt="${o.titre}" loading="lazy">`+(o.vendu?`<span class="pastille">${lang()==='en'?'Sold':'Vendue'}</span>`:'');
+      let im='';for(let k=1;k<=o.vues;k++)im+=`<img class="${k===1?'vis':''}" src="images/sculptures/vignettes/${o.nom}-${k}.webp" alt="${k===1?o.titre:''}" loading="lazy">`;
+      b.innerHTML=im+(o.vendu?`<span class="pastille">${lang()==='en'?'Sold':'Vendue'}</span>`:'');
       b.onclick=()=>ouvrir(i); mos.appendChild(b);
     });
+  }
+  if(!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)){
+    let t=0; setInterval(()=>{t++;mos.querySelectorAll('.objet').forEach((b,i)=>{const ims=b.querySelectorAll('img');if(ims.length<2)return;
+      if((t+i)%2)return; const c=[...ims].findIndex(x=>x.classList.contains('vis'));ims[c].classList.remove('vis');ims[(c+1)%ims.length].classList.add('vis')})},2000);
   }
   function vue(o,k){img.src=`images/sculptures/${o.nom}-${k}.webp`;vues.querySelectorAll('button').forEach((b,j)=>b.classList.toggle('actif',j===k-1))}
   function ouvrir(i){
