@@ -192,6 +192,11 @@
   .fiche.ouverte{opacity:1;pointer-events:auto}
   .fiche figure{max-width:900px;width:100%;margin:auto;text-align:center}
   .fiche img{max-width:100%;max-height:68vh;width:auto;margin:0 auto;border-radius:6px}
+  .fiche .vues{display:flex;gap:.5rem;justify-content:center;margin-top:.8rem}
+  .fiche .vues:empty{display:none}
+  .fiche .vues button{width:52px;height:52px;border-radius:8px;border:1px solid rgba(255,255,255,.25);background:none;padding:0;overflow:hidden;cursor:pointer;opacity:.55}
+  .fiche .vues button.actif{opacity:1;border-color:#f2cf6b}
+  .fiche .vues img{width:100%;height:100%;object-fit:cover;max-height:none;border-radius:0}
   .fiche .sous-titre{display:block;font-style:normal;font-family:var(--sans);font-size:.75rem;letter-spacing:.24em;text-transform:uppercase;opacity:.75;margin-top:.3rem}
   .fiche h3{font-family:var(--serif);font-style:italic;font-weight:400;font-size:1.6rem;margin-top:1.1rem}
   .fiche p{font-size:.88rem;letter-spacing:.04em;opacity:.85;margin-top:.35rem;line-height:1.5}
@@ -387,6 +392,7 @@
   <button class="fiche-nav suiv" aria-label="Suivante">›</button>
   <figure>
     <img id="fiche-img" alt="">
+    <div class="vues" id="fiche-vues"></div>
     <figcaption>
       <h3 id="fiche-titre"></h3>
       <p id="fiche-infos"></p>
@@ -2308,15 +2314,31 @@
   "vendu": false
  },
  {
-  "fichier": "155-bocal-2.jpg",
-  "titre": "Bocal 2",
+  "fichier": "195-rock-meets-petals.jpg",
+  "titre": "Rock Meets Petals",
+  "sous_titre": "Experiment 104",
+  "annee": "2026",
+  "technique_fr": "Hybride (Huile, Acrylique et Retouche Numérique)",
+  "technique_en": "Hybrid (Oil, Acrylic and Digital Retouching)",
+  "categorie": "non-figurative",
+  "hybride": true,
+  "tirage_seul": true,
+  "vendu": false
+ },
+ {
+  "fichier": "153-bocal-1.jpg",
+  "titre": "Bocal",
   "annee": "2025",
   "technique_fr": "Hybride (Huile, Acrylique et Retouche Numérique)",
   "technique_en": "Hybrid (Oil, Acrylic and Digital Retouching)",
   "categorie": "figurative",
   "hybride": true,
   "tirage_seul": true,
-  "vendu": false
+  "vendu": false,
+  "declinaisons": [
+   "153-bocal-1.jpg",
+   "155-bocal-2.jpg"
+  ]
  },
  {
   "fichier": "154-jellyfizz.jpg",
@@ -2329,17 +2351,6 @@
   "tirage_seul": true,
   "vendu": false,
   "sous_titre": "Experiment 4"
- },
- {
-  "fichier": "153-bocal-1.jpg",
-  "titre": "Bocal 1",
-  "annee": "2025",
-  "technique_fr": "Hybride (Huile, Acrylique et Retouche Numérique)",
-  "technique_en": "Hybrid (Oil, Acrylic and Digital Retouching)",
-  "categorie": "figurative",
-  "hybride": true,
-  "tirage_seul": true,
-  "vendu": false
  },
  {
   "fichier": "157-experiment-0-bis.jpg",
@@ -2837,6 +2848,9 @@
   function ouvrir(i){
     courant=(i+visibles.length)%visibles.length; const o=visibles[courant], en=lang()==='en';
     document.getElementById('fiche-img').src='images/peintures/'+o.fichier;
+    const vz=document.getElementById('fiche-vues'); vz.innerHTML='';
+    (o.declinaisons||[]).forEach((f,k)=>{const b=document.createElement('button');b.className=k?'':'actif';b.innerHTML=`<img src="images/peintures/vignettes/${f}" alt="">`;
+      b.onclick=ev=>{ev.stopPropagation();document.getElementById('fiche-img').src='images/peintures/'+f;vz.querySelectorAll('button').forEach(x=>x.classList.toggle('actif',x===b))};vz.appendChild(b)});
     document.getElementById('fiche-img').alt=o.titre.replace(/\n/g,' ');
     document.getElementById('fiche-titre').innerHTML=o.titre.replace(/\n/g,'<br>')+(o.sous_titre?`<small class="sous-titre">${o.sous_titre}</small>`:'');
     document.getElementById('fiche-infos').textContent=[o.annee,en?o.technique_en:o.technique_fr,o.format].filter(x=>x&&x!=='?').join(' · ');
