@@ -92,3 +92,15 @@
   }
   requestAnimationFrame(pas);
 })();
+
+/* Retour à l'accueil : petit logo en haut à gauche sur les pages sans logo */
+(function(){
+  if(document.querySelector('.logo-page,.ouverture'))return;
+  var css=document.createElement('style');
+  css.textContent='.retour-accueil{position:fixed;top:.85rem;left:1rem;z-index:15;display:block;line-height:0;padding:.35rem .5rem;border-radius:999px;background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}'+
+    '.retour-accueil img{width:58px;height:auto}';
+  document.head.appendChild(css);
+  var a=document.createElement('a');a.className='retour-accueil';a.href='index.html';a.setAttribute('aria-label','Accueil');
+  a.innerHTML='<img src="images/logo-mini.webp" alt="Eetee">';
+  document.body.appendChild(a);
+})();
