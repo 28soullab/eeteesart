@@ -61,3 +61,32 @@
     });
   });
 })();
+
+/* Vagues du menu : légère ondulation à l'ouverture de chaque page */
+(function(){
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var paths=document.querySelectorAll('svg.vagues path');if(!paths.length)return;
+  var orig=[],lignes=[4,11,18],D=2600,t0=null;
+  paths.forEach(function(p){orig.push(p.getAttribute('d'))});
+  function trace(ph,k){
+    var d='';
+    lignes.forEach(function(y0,i){
+      var dec=ph-i*.8*Math.sin(Math.PI*k);
+      for(var x=2;x<=30.01;x+=.5){
+        var y=y0-1.5*Math.sin(2*Math.PI*(x-2)/14+dec);
+        d+=(x===2?'M':'L')+x.toFixed(1)+' '+y.toFixed(2)+' ';
+      }
+    });
+    return d;
+  }
+  function pas(t){
+    if(t0===null)t0=t;
+    var k=Math.min((t-t0)/D,1),e=1-Math.pow(1-k,3);
+    var ph=-4*Math.PI*e; /* deux ondulations qui ralentissent */
+    var d=trace(ph,k);
+    paths.forEach(function(p){p.setAttribute('d',d)});
+    if(k<1)requestAnimationFrame(pas);
+    else paths.forEach(function(p,i){p.setAttribute('d',orig[i])});
+  }
+  requestAnimationFrame(pas);
+})();
