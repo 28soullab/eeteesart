@@ -405,7 +405,9 @@
   "format": "43 × 28 × 8 cm",
   "prix": "1 200 CHF",
   "edition_fr": "Sur socle : 76 cm de haut au total (socle 48,5 cm, base 14 × 14 cm)",
-  "edition_en": "On stand: 76 cm total height (stand 48.5 cm, base 14 × 14 cm)"
+  "edition_en": "On stand: 76 cm total height (stand 48.5 cm, base 14 × 14 cm)",
+  "prix_note_fr": "socle inclus",
+  "prix_note_en": "stand included"
  },
  {
   "nom": "cyclopean-coral",
@@ -427,7 +429,9 @@
   "format": "33 × 21 × 8 cm",
   "prix": "1 200 CHF",
   "edition_fr": "Sur socle : 73 cm de haut au total (socle 48,5 cm, base 14 × 14 cm)",
-  "edition_en": "On stand: 73 cm total height (stand 48.5 cm, base 14 × 14 cm)"
+  "edition_en": "On stand: 73 cm total height (stand 48.5 cm, base 14 × 14 cm)",
+  "prix_note_fr": "socle inclus",
+  "prix_note_en": "stand included"
  },
  {
   "nom": "provence",
@@ -588,7 +592,7 @@
     document.getElementById('fiche-titre').textContent=o.titre;
     document.getElementById('fiche-infos').textContent=[o.annee,en?o.matiere_en:o.matiere_fr,o.format].filter(x=>x).join(' · ');
     const ed=en?o.edition_en:o.edition_fr; const e=document.getElementById('fiche-edition'); e.textContent=ed||''; e.style.display=ed?'':'none';
-    document.getElementById('fiche-prix').textContent=o.vendu?(en?'Sold':'Vendue'):(o.prix||(en?'Price on request':'Prix sur demande'));
+    document.getElementById('fiche-prix').textContent=o.vendu?(en?'Sold':'Vendue'):(o.prix?o.prix+((en?o.prix_note_en:o.prix_note_fr)?' · '+(en?o.prix_note_en:o.prix_note_fr):''):(en?'Price on request':'Prix sur demande'));
     const a=document.getElementById('fiche-achat');
     if(o.vendu){a.style.display='none'}else{a.style.display='';a.textContent=en?'Acquire this work':'Acquérir cette œuvre';
       a.href='mailto:eeteesart@gmail.com?subject='+encodeURIComponent('Acquisition — '+o.titre);}
