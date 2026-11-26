@@ -414,6 +414,43 @@
   "prix": "950 CHF"
  },
  {
+  "nom": "pilgrim",
+  "titre": "Pilgrim",
+  "vues": 1,
+  "annee": "",
+  "matiere_fr": "Essences de bois variées",
+  "matiere_en": "Various wood species",
+  "format": "43 × 28 × 8 cm",
+  "prix": "1 200 CHF",
+  "edition_fr": "Sur socle : 76 cm de haut au total (socle 48,5 cm, base 14 × 14 cm)",
+  "edition_en": "On stand: 76 cm total height (stand 48.5 cm, base 14 × 14 cm)"
+ },
+ {
+  "nom": "hermit",
+  "titre": "Hermit",
+  "vues": 1,
+  "annee": "",
+  "matiere_fr": "Essences de bois variées",
+  "matiere_en": "Various wood species",
+  "format": "33 × 21 × 8 cm",
+  "prix": "1 200 CHF",
+  "edition_fr": "Sur socle : 73 cm de haut au total (socle 48,5 cm, base 14 × 14 cm)",
+  "edition_en": "On stand: 73 cm total height (stand 48.5 cm, base 14 × 14 cm)"
+ },
+ {
+  "nom": "cheval",
+  "titre": "Cheval",
+  "vues": 2,
+  "vues_mosaique": 1,
+  "annee": "",
+  "matiere_fr": "Pierre sculptée, rehaussée d'une peinture opalescente",
+  "matiere_en": "Carved stone, enhanced with opalescent paint",
+  "format": "≈ 40 × 30 × 15 cm",
+  "prix": "800 CHF",
+  "edition_fr": "Première vue : avant sa peinture opalescente",
+  "edition_en": "First view: before its opalescent paint"
+ },
+ {
   "nom": "cure",
   "titre": "Cure",
   "vues": 5,
@@ -431,7 +468,7 @@
   "matiere_fr": "Pierre de Provence",
   "matiere_en": "Provence stone",
   "format": "",
-  "prix": ""
+  "prix": "1 200 CHF"
  },
  {
   "nom": "pierre-percee",
@@ -440,8 +477,8 @@
   "annee": "2023",
   "matiere_fr": "Pierre de Bourgogne",
   "matiere_en": "Burgundy stone",
-  "format": "",
-  "prix": ""
+  "format": "100 × 100 × 25 cm",
+  "prix": "2 200 CHF"
  },
  {
   "nom": "fragment-forestier-1",
@@ -530,7 +567,7 @@
     mos.innerHTML='';
     P.forEach((o,i)=>{
       const b=document.createElement('button'); b.className='objet';
-      let im='';for(let k=1;k<=o.vues;k++)im+=`<img class="${k===1?'vis':''}" src="images/sculptures/vignettes/${o.nom}-${k}.webp" alt="${k===1?o.titre:''}" loading="lazy">`;
+      let im='';for(let k=1;k<=(o.vues_mosaique||o.vues);k++)im+=`<img class="${k===1?'vis':''}" src="images/sculptures/vignettes/${o.nom}-${k}.webp" alt="${k===1?o.titre:''}" loading="lazy">`;
       b.innerHTML=im+(o.vendu?`<span class="pastille">${lang()==='en'?'Sold':'Vendue'}</span>`:'');
       b.onclick=()=>ouvrir(i); mos.appendChild(b);
     });
